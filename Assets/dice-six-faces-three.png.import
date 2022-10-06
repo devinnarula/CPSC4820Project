@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RPG Nature Tileset.png-358f8ecd1fc2ebd8b8d06969fe8891a6.stex"
+path="res://.import/dice-six-faces-three.png-ca5ee864349705d0a97d7a975207c4b6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RPG Nature Tileset.png"
-dest_files=[ "res://.import/RPG Nature Tileset.png-358f8ecd1fc2ebd8b8d06969fe8891a6.stex" ]
+source_file="res://Assets/dice-six-faces-three.png"
+dest_files=[ "res://.import/dice-six-faces-three.png-ca5ee864349705d0a97d7a975207c4b6.stex" ]
 
 [params]
 
