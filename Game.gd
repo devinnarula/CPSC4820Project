@@ -10,7 +10,7 @@ var DICE_CELL:Vector2
 
 var moves = 0
 
-var players = [Player.new("Player 1"),Player.new("Player 2"),Player.new("Player 3"),Player.new("Player 4")]
+var players = []
 
 var curr_player = 0
 
@@ -18,10 +18,18 @@ var curr_player = 0
 func _ready():
 	rng.randomize()
 	call_deferred("setup_game")
-	players[0].updateHealth(-10, $Player1Health)
+	players = [Player.new("Player 1",$Player1Health, $Player1Hunger),Player.new("Player 2",$Player2Health, $Player2Hunger),Player.new("Player 3",$Player3Health, $Player3Hunger),Player.new("Player 4",$Player4Health, $Player4Hunger)]
+	players[0].updateHealth(-10)
+	players[1].updateHealth(0)
+	players[2].updateHealth(-30)
+	players[3].updateHealth(-85)
+	players[0].updateHunger(-90)
+	players[1].updateHunger(-60)
+	players[2].updateHunger(-50)
+	players[3].updateHunger(-5)
 
 func setup_game():
-	$Label.set_text(players[curr_player].player_name);
+	curr_labels()
 	var cells = $TileMap1.get_used_cells()
 	for cell in cells:
 		var index = $TileMap1.get_cell(cell.x, cell.y)
@@ -48,8 +56,28 @@ func next_turn(coord:Vector2):
 		curr_player += 1
 	else:
 		curr_player=0
-	$Label.set_text(players[curr_player].player_name);
 	$TileMap1.set_cell(coord.x, coord.y, CLICK_TO_ROLL)
+	curr_labels()
+	
+func curr_labels():
+	$Label.set_text(players[curr_player].player_name);
+	$Movement.set_text("Movement Bonus: "+str(players[curr_player].movement))
+	$Sword.set_text("Sword Multiplier: "+str(players[curr_player].sword))
+	$Bow.set_text("Bow Multiplier: "+str(players[curr_player].bow))
+	$PlayerHealth.value = players[curr_player].hitpoints;
+	$PlayerHunger.value = players[curr_player].hunger;
+	if players[curr_player].hitpoints <= 20:
+		var styleBox = $PlayerHealth.get("custom_styles/fg")
+		styleBox.bg_color = Color(255, 0, 0)
+	else:
+		var styleBox = $PlayerHealth.get("custom_styles/fg")
+		styleBox.bg_color = Color(0, 255, 0)
+	if players[curr_player].hunger <= 20:
+		var styleBox = $PlayerHunger.get("custom_styles/fg")
+		styleBox.bg_color = Color(255, 0, 0)
+	else:
+		var styleBox = $PlayerHunger.get("custom_styles/fg")
+		styleBox.bg_color = Color(0, 255, 0)
 	
 func _input(event):
 	if event is InputEventMouseButton:
