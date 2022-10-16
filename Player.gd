@@ -7,14 +7,17 @@ var hitpoints = 100
 var hunger = 100
 var healthbar:ProgressBar
 var hungerbar:ProgressBar
+var body:KinematicBody2D
 var movement = 0
 var sword = 1
 var bow = 0.5
+
 	
-func _init(name:String, bar_health:ProgressBar, bar_hunger:ProgressBar):
+func _init(name:String, bar_health:ProgressBar, bar_hunger:ProgressBar, kinematicBody:KinematicBody2D):
 	player_name = name
 	healthbar = bar_health
 	hungerbar = bar_hunger
+	body = kinematicBody
 
 func updateHealth(change:int):
 	hitpoints += change
@@ -35,3 +38,5 @@ func updateHunger(change:int):
 	else:
 		var styleBox = hungerbar.get("custom_styles/fg")
 		styleBox.bg_color = Color(0, 255, 0)
+		
+		
