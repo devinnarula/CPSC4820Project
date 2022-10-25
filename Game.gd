@@ -9,16 +9,16 @@ var rng = RandomNumberGenerator.new()
 var DICE_CELL:Vector2
 
 var moves = 0
-
+var moves_for_sprite = 0
 var players = []
 
-var curr_player = 0
+export (int) var curr_player = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
 	call_deferred("setup_game")
-	players = [Player.new("Player 1",$Player1Health, $Player1Hunger),Player.new("Player 2",$Player2Health, $Player2Hunger),Player.new("Player 3",$Player3Health, $Player3Hunger),Player.new("Player 4",$Player4Health, $Player4Hunger)]
+	players = [Player.new("Player 1",$Player1Health, $Player1Hunger,$EgyptPlayer),Player.new("Player 2",$Player2Health, $Player2Hunger,$KinematicBody2D),Player.new("Player 3",$Player3Health, $Player3Hunger,$KinematicBody2D),Player.new("Player 4",$Player4Health, $Player4Hunger,$KinematicBody2D)]
 	players[0].updateHealth(-10)
 	players[1].updateHealth(0)
 	players[2].updateHealth(-30)
@@ -84,8 +84,17 @@ func _input(event):
 		var click = $TileMap1.world_to_map($TileMap1.to_local(event.position)) 
 		if 0<=click.x-DICE_CELL.x && click.x-DICE_CELL.x<=3 && 0<=click.y-DICE_CELL.y && click.y-DICE_CELL.y<=3&& $TileMap1.get_cell(DICE_CELL.x, DICE_CELL.y) == CLICK_TO_ROLL:
 			roll_dice(DICE_CELL)
+			
 	if event is InputEventKey and event.pressed and not event.is_echo():
 		if event.scancode == KEY_UP || event.scancode ==  KEY_DOWN || event.scancode ==  KEY_LEFT || event.scancode ==  KEY_RIGHT:
+			if curr_player == 0:
+				$JapanPlayer.set_moves(moves)
+			elif curr_player == 1:
+				$VikingPlayer.set_moves(moves)
+			elif curr_player == 2:
+				$EgyptPlayer.set_moves(moves)
+			elif curr_player == 3:
+				$GreecePlayer.set_moves(moves)
 			moves -= 1
 			if moves==0:
 				next_turn(DICE_CELL)
