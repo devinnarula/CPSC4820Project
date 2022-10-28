@@ -11,14 +11,19 @@ var body:KinematicBody2D
 var movement = 0
 var sword = 1
 var bow = 0.5
+var location:Vector2
 
 	
-func _init(name:String, bar_health:ProgressBar, bar_hunger:ProgressBar, kinematicBody:KinematicBody2D):
+func _init(name:String, bar_health:ProgressBar, bar_hunger:ProgressBar, kinematicBody:KinematicBody2D, loc:Vector2):
 	player_name = name
 	healthbar = bar_health
 	hungerbar = bar_hunger
 	body = kinematicBody
+	location = loc
 
+func updateLocation(diff:Vector2):
+	location += diff
+	
 func updateHealth(change:int):
 	hitpoints += change
 	healthbar.value = hitpoints

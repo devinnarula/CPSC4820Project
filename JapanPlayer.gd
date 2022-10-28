@@ -24,22 +24,30 @@ func get_input():
 		#_animated_sprite.animation = "run"
 			velocity = Vector2.ZERO
 			if Input.is_action_just_released('right'):
-				velocity.x +=1000
+				#velocity.x +=1000
+				move_and_collide(Vector2(32,0))
+				get_parent().updateLocation(0, Vector2(1,0));
 				self.moves -=1
 				attack = false
 
 			elif Input.is_action_just_released('left'):
-				velocity.x -= 1000
+				#velocity.x -= 1000
+				move_and_collide(Vector2(-32,0))
+				get_parent().updateLocation(0, Vector2(-1,0));
 				self.moves -=1
 				attack = false
 
 			elif Input.is_action_just_released('down'):
-				velocity.y += 1000
+				#velocity.y += 1000
+				move_and_collide(Vector2(0,32))
+				get_parent().updateLocation(0, Vector2(0,1));
 				self.moves -=1
 				attack = false
 
 			elif Input.is_action_just_released('up'):
-				velocity.y -= 1000
+				#velocity.y -= 1000
+				move_and_collide(Vector2(0,-32))
+				get_parent().updateLocation(0, Vector2(0,-1));
 				self.moves -=1
 				attack = false
 			

@@ -4,6 +4,9 @@ const CLICK_TO_ROLL := 9
 
 const DICE := [14, 17, 16, 13, 12, 15]
 
+var SWORD_BUTTONS := [$SwordButton1, $SwordButton2, $SwordButton3]
+var BOW_BUTTONS := [$BowButton1, $BowButton2, $BowButton3]
+
 var rng = RandomNumberGenerator.new()
 
 var DICE_CELL:Vector2
@@ -16,9 +19,16 @@ export (int) var curr_player = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	SWORD_BUTTONS = [$SwordButton1, $SwordButton2, $SwordButton3]
+	BOW_BUTTONS = [$BowButton1, $BowButton2, $BowButton3]
 	rng.randomize()
 	call_deferred("setup_game")
-	players = [Player.new("Player 1",$Player1Health, $Player1Hunger,$EgyptPlayer),Player.new("Player 2",$Player2Health, $Player2Hunger,$KinematicBody2D),Player.new("Player 3",$Player3Health, $Player3Hunger,$KinematicBody2D),Player.new("Player 4",$Player4Health, $Player4Hunger,$KinematicBody2D)]
+	players = [
+		Player.new("Japan",$Player1Health, $Player1Hunger,$EgyptPlayer,Vector2(15,15)),
+		Player.new("Viking",$Player2Health, $Player2Hunger,$KinematicBody2D,Vector2(16,15)),
+		Player.new("Egypt",$Player3Health, $Player3Hunger,$KinematicBody2D,Vector2(15,16)),
+		Player.new("Greece",$Player4Health, $Player4Hunger,$KinematicBody2D,Vector2(16,16))
+		]
 	players[0].updateHealth(-10)
 	players[1].updateHealth(0)
 	players[2].updateHealth(-30)
@@ -38,11 +48,36 @@ func setup_game():
 				#roll_dice(cell, self)
 				DICE_CELL = cell
 
-func roll_dice(coord:Vector2):	
+func roll_dice(coord:Vector2):
 	dice_animation(coord)
 	var dice = rng.randi_range(0,5)
 	moves = dice+1
 	$TileMap1.set_cell(coord.x, coord.y, DICE[dice])
+	$EndButton.disabled = false;
+	$SwordButton1.disabled = true;
+	$SwordButton2.disabled = true;
+	$SwordButton3.disabled = true;
+	for i in range (0,4):
+		if i!=curr_player:
+			if(abs(players[i].location.x-players[curr_player].location.x)<=1 and abs(players[i].location.y-players[curr_player].location.y)<=1):
+				if i<curr_player:
+					SWORD_BUTTONS[i].disabled = false;
+					SWORD_BUTTONS[i].text = players[i].player_name;
+				else:
+					SWORD_BUTTONS[i-1].disabled = false;
+					SWORD_BUTTONS[i-1].text = players[i].player_name;
+	$BowButton1.disabled = true;
+	$BowButton2.disabled = true;
+	$BowButton3.disabled = true;
+	for i in range (0,4):
+		if i!=curr_player:
+			if(abs(players[i].location.x-players[curr_player].location.x)<=4 and abs(players[i].location.y-players[curr_player].location.y)<=4):
+				if i<curr_player:
+					BOW_BUTTONS[i].disabled = false;
+					BOW_BUTTONS[i].text = players[i].player_name;
+				else:
+					BOW_BUTTONS[i-1].disabled = false;
+					BOW_BUTTONS[i-1].text = players[i].player_name;
 	
 func dice_animation(coord:Vector2):	
 	for i in range(0,20):
@@ -66,6 +101,14 @@ func curr_labels():
 	$Bow.set_text("Bow Multiplier: "+str(players[curr_player].bow))
 	$PlayerHealth.value = players[curr_player].hitpoints;
 	$PlayerHunger.value = players[curr_player].hunger;
+	$SwordButton1.disabled = true;
+	$SwordButton2.disabled = true;
+	$SwordButton3.disabled = true;
+	$BowButton1.disabled = true;
+	$BowButton2.disabled = true;
+	$BowButton3.disabled = true;
+	$EndButton.disabled = true;
+
 	if players[curr_player].hitpoints <= 20:
 		var styleBox = $PlayerHealth.get("custom_styles/fg")
 		styleBox.bg_color = Color(255, 0, 0)
@@ -78,6 +121,36 @@ func curr_labels():
 	else:
 		var styleBox = $PlayerHunger.get("custom_styles/fg")
 		styleBox.bg_color = Color(0, 255, 0)
+	
+func updateLocation(player:int, diff:Vector2):
+	players[player].updateLocation(diff)
+	$SwordButton1.disabled = true;
+	$SwordButton2.disabled = true;
+	$SwordButton3.disabled = true;
+	for i in range (0,4):
+		if i!=player:
+			if(abs(players[i].location.x-players[player].location.x)<=1 and abs(players[i].location.y-players[player].location.y)<=1):
+				if i<curr_player:
+					SWORD_BUTTONS[i].disabled = false;
+					SWORD_BUTTONS[i].text = players[i].player_name;
+				else:
+					SWORD_BUTTONS[i-1].disabled = false;
+					SWORD_BUTTONS[i-1].text = players[i].player_name;
+	$BowButton1.disabled = true;
+	$BowButton2.disabled = true;
+	$BowButton3.disabled = true;
+	for i in range (0,4):
+		if i!=player:
+			if(abs(players[i].location.x-players[player].location.x)<=4 and abs(players[i].location.y-players[player].location.y)<=4):
+				if i<curr_player:
+					BOW_BUTTONS[i].disabled = false;
+					BOW_BUTTONS[i].text = players[i].player_name;
+				else:
+					BOW_BUTTONS[i-1].disabled = false;
+					BOW_BUTTONS[i-1].text = players[i].player_name;
+	moves -= 1
+	if moves==0:
+		next_turn(DICE_CELL)
 	
 func _input(event):
 	if event is InputEventMouseButton:
@@ -95,6 +168,40 @@ func _input(event):
 				$EgyptPlayer.set_moves(moves)
 			elif curr_player == 3:
 				$GreecePlayer.set_moves(moves)
-			moves -= 1
-			if moves==0:
-				next_turn(DICE_CELL)
+
+
+func _on_SwordButton1_pressed():
+	print("Player " + players[curr_player].player_name + " attacks " + $SwordButton1.text)
+
+
+func _on_SwordButton2_pressed():
+	print("Player " + players[curr_player].player_name + " attacks " + $SwordButton2.text)
+
+
+func _on_SwordButton3_pressed():
+	print("Player " + players[curr_player].player_name + " attacks " + $SwordButton3.text)
+
+
+func _on_BowButton1_pressed():
+	print("Player " + players[curr_player].player_name + " attacks " + $BowButton1.text)
+
+
+func _on_BowButton2_pressed():
+	print("Player " + players[curr_player].player_name + " attacks " + $BowButton2.text)
+
+
+func _on_BowButton3_pressed():
+	print("Player " + players[curr_player].player_name + " attacks " + $BowButton3.text)
+
+
+func _on_EndButton_pressed():
+	moves = 0
+	if curr_player == 0:
+		$JapanPlayer.set_moves(moves)
+	elif curr_player == 1:
+		$VikingPlayer.set_moves(moves)
+	elif curr_player == 2:
+		$EgyptPlayer.set_moves(moves)
+	elif curr_player == 3:
+		$GreecePlayer.set_moves(moves)
+	next_turn(DICE_CELL)
