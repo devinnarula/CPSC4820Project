@@ -1,4 +1,4 @@
-[gd_scene load_steps=211 format=2]
+[gd_scene load_steps=218 format=2]
 
 [ext_resource path="res://Assets/RPG Nature Tileset.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Wood.jpg" type="Texture" id=2]
@@ -1876,6 +1876,26 @@ animations = [ {
 "speed": 6.0
 } ]
 
+[sub_resource type="DynamicFont" id=61]
+size = 25
+font_data = ExtResource( 12 )
+
+[sub_resource type="StyleBoxFlat" id=68]
+bg_color = Color( 0, 1, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=62]
+
+[sub_resource type="StyleBoxFlat" id=63]
+bg_color = Color( 0, 0.717647, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=70]
+bg_color = Color( 0, 1, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=66]
+
+[sub_resource type="StyleBoxFlat" id=71]
+bg_color = Color( 0, 0.717647, 0, 1 )
+
 [node name="Node2D" type="Node2D"]
 position = Vector2( 1153, 636 )
 script = ExtResource( 6 )
@@ -1921,7 +1941,7 @@ margin_top = -400.0
 margin_right = 1056.0
 margin_bottom = -340.0
 custom_fonts/font = SubResource( 6 )
-text = "Player 1"
+text = "Japan"
 
 [node name="Player2" type="Label" parent="."]
 margin_left = 608.0
@@ -1929,14 +1949,14 @@ margin_top = -200.0
 margin_right = 1016.0
 margin_bottom = -140.0
 custom_fonts/font = SubResource( 7 )
-text = "Player 2"
+text = "Viking"
 
 [node name="Player3" type="Label" parent="."]
 margin_left = 608.0
 margin_right = 1016.0
 margin_bottom = 60.0
 custom_fonts/font = SubResource( 8 )
-text = "Player 3"
+text = "Egypt"
 
 [node name="Player4" type="Label" parent="."]
 margin_left = 608.0
@@ -1944,7 +1964,7 @@ margin_top = 200.0
 margin_right = 1016.0
 margin_bottom = 260.0
 custom_fonts/font = SubResource( 9 )
-text = "Player 4"
+text = "Greece"
 
 [node name="PlayerHealth" type="ProgressBar" parent="."]
 margin_left = -970.0
@@ -2131,16 +2151,18 @@ custom_fonts/font = SubResource( 24 )
 text = "Bow Multiplier: 0.5"
 
 [node name="EgyptPlayer" type="KinematicBody2D" parent="."]
+position = Vector2( 16, -22 )
 script = ExtResource( 33 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="EgyptPlayer"]
 position = Vector2( -37, -22 )
 frames = SubResource( 25 )
 animation = "idle"
-frame = 4
+frame = 2
 playing = true
 
 [node name="GreecePlayer" type="KinematicBody2D" parent="."]
+position = Vector2( -16, -22 )
 script = ExtResource( 57 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="GreecePlayer"]
@@ -2148,19 +2170,21 @@ position = Vector2( 35.5, -16.5 )
 scale = Vector2( 0.947917, 0.945313 )
 frames = SubResource( 44 )
 animation = "idle"
+frame = 6
 playing = true
 
 [node name="JapanPlayer" type="KinematicBody2D" parent="."]
+position = Vector2( 16, 10 )
 script = ExtResource( 55 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="JapanPlayer"]
 position = Vector2( -40, -37 )
 frames = SubResource( 43 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="VikingPlayer" type="KinematicBody2D" parent="."]
+position = Vector2( -16, 10 )
 script = ExtResource( 50 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="VikingPlayer"]
@@ -2168,5 +2192,105 @@ position = Vector2( 35, -37 )
 scale = Vector2( 1.48, 1.52083 )
 frames = SubResource( 26 )
 animation = "take_hit"
-frame = 1
 playing = true
+
+[node name="AttackSword" type="Label" parent="."]
+margin_left = -1050.0
+margin_top = 200.0
+margin_right = -754.0
+margin_bottom = 231.0
+custom_fonts/font = SubResource( 24 )
+text = "Attack Player With Sword:"
+
+[node name="AttackBow" type="Label" parent="."]
+margin_left = -1050.0
+margin_top = 300.0
+margin_right = -754.0
+margin_bottom = 331.0
+custom_fonts/font = SubResource( 24 )
+text = "Attack Player With Bow:"
+
+[node name="SwordButton1" type="Button" parent="."]
+margin_left = -1050.0
+margin_top = 240.0
+margin_right = -950.0
+margin_bottom = 290.0
+custom_fonts/font = SubResource( 61 )
+custom_styles/hover = SubResource( 68 )
+custom_styles/disabled = SubResource( 62 )
+custom_styles/normal = SubResource( 63 )
+text = "Player"
+
+[node name="SwordButton2" type="Button" parent="."]
+margin_left = -930.0
+margin_top = 240.0
+margin_right = -830.0
+margin_bottom = 290.0
+custom_fonts/font = SubResource( 61 )
+custom_styles/hover = SubResource( 68 )
+custom_styles/disabled = SubResource( 62 )
+custom_styles/normal = SubResource( 63 )
+text = "Player"
+
+[node name="SwordButton3" type="Button" parent="."]
+margin_left = -810.0
+margin_top = 240.0
+margin_right = -710.0
+margin_bottom = 290.0
+custom_fonts/font = SubResource( 61 )
+custom_styles/hover = SubResource( 68 )
+custom_styles/disabled = SubResource( 62 )
+custom_styles/normal = SubResource( 63 )
+text = "Player"
+
+[node name="BowButton1" type="Button" parent="."]
+margin_left = -1050.0
+margin_top = 340.0
+margin_right = -950.0
+margin_bottom = 390.0
+custom_fonts/font = SubResource( 61 )
+custom_styles/hover = SubResource( 68 )
+custom_styles/disabled = SubResource( 62 )
+custom_styles/normal = SubResource( 63 )
+text = "Player"
+
+[node name="BowButton2" type="Button" parent="."]
+margin_left = -930.0
+margin_top = 340.0
+margin_right = -830.0
+margin_bottom = 390.0
+custom_fonts/font = SubResource( 61 )
+custom_styles/hover = SubResource( 68 )
+custom_styles/disabled = SubResource( 62 )
+custom_styles/normal = SubResource( 63 )
+text = "Player"
+
+[node name="BowButton3" type="Button" parent="."]
+margin_left = -810.0
+margin_top = 340.0
+margin_right = -710.0
+margin_bottom = 390.0
+custom_fonts/font = SubResource( 61 )
+custom_styles/hover = SubResource( 68 )
+custom_styles/disabled = SubResource( 62 )
+custom_styles/normal = SubResource( 63 )
+text = "Player"
+
+[node name="EndButton" type="Button" parent="."]
+margin_left = -944.0
+margin_top = 410.0
+margin_right = -720.0
+margin_bottom = 460.0
+custom_fonts/font = SubResource( 61 )
+custom_styles/hover = SubResource( 70 )
+custom_styles/disabled = SubResource( 66 )
+custom_styles/normal = SubResource( 71 )
+text = "End Turn"
+
+[connection signal="pressed" from="SwordButton1" to="." method="_on_SwordButton1_pressed"]
+[connection signal="pressed" from="SwordButton2" to="." method="_on_SwordButton2_pressed"]
+[connection signal="pressed" from="SwordButton3" to="." method="_on_SwordButton3_pressed"]
+[connection signal="pressed" from="BowButton1" to="." method="_on_BowButton1_pressed"]
+[connection signal="pressed" from="BowButton2" to="." method="_on_BowButton2_pressed"]
+[connection signal="pressed" from="BowButton3" to="." method="_on_BowButton3_pressed"]
+[connection signal="pressed" from="EndButton" to="." method="_on_EndButton_pressed"]
