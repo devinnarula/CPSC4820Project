@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/TitleImage.jpg" type="Texture" id=1]
 [ext_resource path="res://Assets/Roboto-Black.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://TitleScreen.gd" type="Script" id=3]
+[ext_resource path="res://Assets/logoblack.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -68,12 +69,12 @@ He proposes to send representatives from each of the 4 warring countries to batt
 out fairly in a tournament, video-game style. The winning warrior will return to their
 country and will be in charge of repairing the relations between the 4 countries.
 
-The 4 countries agree to this idea. Warriors from Japan, Egypt, Greece, and Norwav
+The 4 countries agree to this idea. Warriors from Japan, Egypt, Greece, and Norway
 are sent to a video game tournament to battle out their differences.
 
 4 civilizations.
 4 warriors.
-Who will triumoh?"
+Who will triumph?"
 text = "The year is 4050. World War III has broken out, leaving cities in ruins and lives in shambles. Friends are turning on friends and family on family. Innocent lives are being taken and the situation is worsening by the day.
 
 Suddenly - a local video game enthusiast has a brilliant idea.
@@ -82,20 +83,20 @@ He proposes to send representatives from each of the 4 warring countries to batt
 out fairly in a tournament, video-game style. The winning warrior will return to their
 country and will be in charge of repairing the relations between the 4 countries.
 
-The 4 countries agree to this idea. Warriors from Japan, Egypt, Greece, and Norwav
+The 4 countries agree to this idea. Warriors from Japan, Egypt, Greece, and Norway
 are sent to a video game tournament to battle out their differences.
 
 4 civilizations.
 4 warriors.
-Who will triumoh?"
+Who will triumph?"
 
 [node name="TitleLabel" type="Label" parent="."]
-margin_left = 907.0
-margin_top = 36.0
-margin_right = 1398.0
-margin_bottom = 154.0
+margin_left = 592.0
+margin_top = 43.0
+margin_right = 1724.0
+margin_bottom = 161.0
 custom_fonts/font = SubResource( 2 )
-text = "Game Title"
+text = "Battle of the Civilizations"
 
 [node name="IntructionsButton" type="Button" parent="."]
 margin_left = 250.0
@@ -116,6 +117,11 @@ custom_fonts/font = SubResource( 3 )
 custom_styles/hover = SubResource( 6 )
 custom_styles/normal = SubResource( 4 )
 text = "Start Game"
+
+[node name="Logoblack" type="Sprite" parent="."]
+position = Vector2( 2098, 128 )
+scale = Vector2( 0.325, 0.325 )
+texture = ExtResource( 4 )
 
 [connection signal="pressed" from="IntructionsButton" to="." method="_on_IntructionsButton_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
