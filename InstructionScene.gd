@@ -16,9 +16,5 @@ func _ready():
 #	pass
 
 
-func _on_StartButton_pressed():
-	get_tree().change_scene("res://GameMap.tscn")
-
-
-func _on_IntructionsButton_pressed():
-	get_tree().change_scene("res://InstructionScene.tscn")
+func _on_ResumeButton_pressed():
+	get_tree().change_scene("res://TitleScreen.tscn")

@@ -2394,6 +2394,7 @@ position = Vector2( 35, -37 )
 scale = Vector2( 1.48, 1.52083 )
 frames = SubResource( 26 )
 animation = "take_hit"
+frame = 1
 playing = true
 
 [node name="AttackSword" type="Label" parent="."]

@@ -152,6 +152,11 @@ func updateLocation(player:int, diff:Vector2):
 	if moves==0:
 		next_turn(DICE_CELL)
 	
+func game_over(player:int):
+	var winner = players[player].player_name
+	global.winner = winner;
+	get_tree().change_scene("res://EndScreen.tscn")
+
 func _input(event):
 	if event is InputEventMouseButton:
 		var click = $TileMap1.world_to_map($TileMap1.to_local(event.position)) 
