@@ -1,4 +1,4 @@
-[gd_scene load_steps=220 format=2]
+[gd_scene load_steps=232 format=2]
 
 [ext_resource path="res://Assets/RPG Nature Tileset.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Wood.jpg" type="Texture" id=2]
@@ -151,6 +151,8 @@
 [ext_resource path="res://Assets/fire_knight/01_idle/idle_8.png" type="Texture" id=149]
 [ext_resource path="res://Assets/Martial Hero/Martial Hero/Sprites/Idle.png" type="Texture" id=150]
 [ext_resource path="res://Assets/glowtiles.PNG" type="Texture" id=151]
+[ext_resource path="res://MenuButton.gd" type="Script" id=152]
+[ext_resource path="res://ButtonStyle.tres" type="StyleBox" id=153]
 
 [sub_resource type="StreamTexture" id=2]
 flags = 4
@@ -2039,6 +2041,56 @@ bg_color = Color( 0, 1, 0, 1 )
 [sub_resource type="StyleBoxFlat" id=71]
 bg_color = Color( 0, 0.717647, 0, 1 )
 
+[sub_resource type="StyleBoxFlat" id=78]
+
+[sub_resource type="StyleBoxFlat" id=79]
+bg_color = Color( 1, 0.580392, 0.0431373, 1 )
+
+[sub_resource type="StyleBoxFlat" id=80]
+bg_color = Color( 1, 0.701961, 0.321569, 1 )
+
+[sub_resource type="DynamicFont" id=81]
+size = 26
+font_data = ExtResource( 12 )
+
+[sub_resource type="StyleBoxFlat" id=82]
+bg_color = Color( 1, 0.678431, 0.305882, 1 )
+
+[sub_resource type="Theme" id=83]
+MenuButton/styles/hover = SubResource( 78 )
+MenuButton/styles/normal = SubResource( 79 )
+MenuButton/styles/pressed = SubResource( 80 )
+PopupMenu/fonts/font = SubResource( 81 )
+PopupMenu/styles/separator = SubResource( 82 )
+
+[sub_resource type="DynamicFont" id=75]
+size = 32
+font_data = ExtResource( 12 )
+
+[sub_resource type="StyleBoxFlat" id=77]
+bg_color = Color( 1, 0.607843, 0, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=76]
+bg_color = Color( 1, 0.607843, 0, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=74]
+bg_color = Color( 1, 0.607843, 0, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0, 0, 1 )
+
 [node name="Node2D" type="Node2D"]
 position = Vector2( 1153, 636 )
 script = ExtResource( 6 )
@@ -2307,7 +2359,7 @@ script = ExtResource( 33 )
 position = Vector2( -37, -22 )
 frames = SubResource( 25 )
 animation = "idle"
-frame = 7
+frame = 1
 playing = true
 
 [node name="GreecePlayer" type="KinematicBody2D" parent="."]
@@ -2319,7 +2371,7 @@ position = Vector2( 35.5, -16.5 )
 scale = Vector2( 0.947917, 0.945313 )
 frames = SubResource( 44 )
 animation = "idle"
-frame = 3
+frame = 5
 playing = true
 
 [node name="JapanPlayer" type="KinematicBody2D" parent="."]
@@ -2330,7 +2382,7 @@ script = ExtResource( 55 )
 position = Vector2( -40, -37 )
 frames = SubResource( 43 )
 animation = "idle"
-frame = 5
+frame = 7
 playing = true
 
 [node name="VikingPlayer" type="KinematicBody2D" parent="."]
@@ -2342,6 +2394,7 @@ position = Vector2( 35, -37 )
 scale = Vector2( 1.48, 1.52083 )
 frames = SubResource( 26 )
 animation = "take_hit"
+frame = 1
 playing = true
 
 [node name="AttackSword" type="Label" parent="."]
@@ -2436,6 +2489,22 @@ custom_styles/hover = SubResource( 70 )
 custom_styles/disabled = SubResource( 66 )
 custom_styles/normal = SubResource( 71 )
 text = "End Turn"
+
+[node name="MenuButton" type="MenuButton" parent="."]
+margin_left = 960.0
+margin_top = -589.0
+margin_right = 1110.0
+margin_bottom = -529.0
+theme = SubResource( 83 )
+custom_fonts/font = SubResource( 75 )
+custom_styles/hover = ExtResource( 153 )
+custom_styles/pressed = SubResource( 77 )
+custom_styles/focus = SubResource( 76 )
+custom_styles/normal = SubResource( 74 )
+text = "Menu"
+flat = false
+switch_on_hover = true
+script = ExtResource( 152 )
 
 [connection signal="pressed" from="SwordButton1" to="." method="_on_SwordButton1_pressed"]
 [connection signal="pressed" from="SwordButton2" to="." method="_on_SwordButton2_pressed"]
