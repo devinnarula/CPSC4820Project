@@ -6,6 +6,11 @@ const DICE := [14, 17, 16, 13, 12, 15]
 
 var SWORD_BUTTONS := [$SwordButton1, $SwordButton2, $SwordButton3]
 var BOW_BUTTONS := [$BowButton1, $BowButton2, $BowButton3]
+var RESOURCE_BUTTONS := [$UpgradeSword, $UpgradeBow, $EatFood, $UpgradeMovement]
+var STEEL_LOCS := [Vector2(1,3), Vector2(3,5)]
+var WOOD_LOCS := [Vector2(29,9), Vector2(30,10)]
+var FOOD_LOCS := [Vector2(3,27), Vector2(4,28)]
+var KNOWLEDGE_LOCS := [Vector2(24,26), Vector2(25,27)]
 
 var rng = RandomNumberGenerator.new()
 
@@ -21,6 +26,7 @@ export (int) var curr_player = 0
 func _ready():
 	SWORD_BUTTONS = [$SwordButton1, $SwordButton2, $SwordButton3]
 	BOW_BUTTONS = [$BowButton1, $BowButton2, $BowButton3]
+	RESOURCE_BUTTONS = [$UpgradeSword, $UpgradeBow, $EatFood, $UpgradeMovement]
 	rng.randomize()
 	call_deferred("setup_game")
 	players = [
@@ -51,7 +57,7 @@ func setup_game():
 func roll_dice(coord:Vector2):
 	dice_animation(coord)
 	var dice = rng.randi_range(0,5)
-	moves = dice+1
+	moves = dice+1+players[curr_player].movement
 	$TileMap1.set_cell(coord.x, coord.y, DICE[dice])
 	$EndButton.disabled = false;
 	$SwordButton1.disabled = true;
@@ -78,11 +84,49 @@ func roll_dice(coord:Vector2):
 				else:
 					BOW_BUTTONS[i-1].disabled = false;
 					BOW_BUTTONS[i-1].text = players[i].player_name;
-	
+	$UpgradeSword.disabled = true
+	for x in range(STEEL_LOCS[0][0], STEEL_LOCS[1][0]+1):
+		for y in range(STEEL_LOCS[0][1], STEEL_LOCS[1][1]+1):
+			if players[curr_player].location == Vector2(x,y):
+				$UpgradeSword.disabled = false
+	$UpgradeBow.disabled = true
+	for x in range(WOOD_LOCS[0][0], WOOD_LOCS[1][0]+1):
+		for y in range(WOOD_LOCS[0][1], WOOD_LOCS[1][1]+1):
+			if players[curr_player].location == Vector2(x,y):
+				$UpgradeBow.disabled = false
+	$EatFood.disabled = true
+	for x in range(FOOD_LOCS[0][0], FOOD_LOCS[1][0]+1):
+		for y in range(FOOD_LOCS[0][1], FOOD_LOCS[1][1]+1):
+			if players[curr_player].location == Vector2(x,y):
+				$EatFood.disabled = false
+	$UpgradeMovement.disabled = true
+	for x in range(KNOWLEDGE_LOCS[0][0], KNOWLEDGE_LOCS[1][0]+1):
+		for y in range(KNOWLEDGE_LOCS[0][1], KNOWLEDGE_LOCS[1][1]+1):
+			if players[curr_player].location == Vector2(x,y):
+				$UpgradeMovement.disabled = false
+	if players[curr_player].hunger>0:
+		players[curr_player].updateHunger(-10)
+		$PlayerHunger.value = players[curr_player].hunger;
+		if players[curr_player].hunger <= 20:
+			var styleBox = $PlayerHunger.get("custom_styles/fg")
+			styleBox.bg_color = Color(255, 0, 0)
+		else:
+			var styleBox = $PlayerHunger.get("custom_styles/fg")
+			styleBox.bg_color = Color(0, 255, 0)
+	if players[curr_player].hunger <= 0:
+		players[curr_player].updateHealth(-10)
+		$PlayerHealth.value = players[curr_player].hitpoints;
+		if players[curr_player].hitpoints <= 20:
+			var styleBox = $PlayerHealth.get("custom_styles/fg")
+			styleBox.bg_color = Color(255, 0, 0)
+		else:
+			var styleBox = $PlayerHealth.get("custom_styles/fg")
+			styleBox.bg_color = Color(0, 255, 0)
+
 func dice_animation(coord:Vector2):	
 	for i in range(0,20):
 		var dice = rng.randi_range(0,5)
-		moves = dice+1
+		moves = dice+1+players[curr_player].movement
 		$TileMap1.set_cell(coord.x, coord.y, DICE[dice])
 		yield(get_tree().create_timer(0.05), "timeout")
 
@@ -108,6 +152,10 @@ func curr_labels():
 	$BowButton2.disabled = true;
 	$BowButton3.disabled = true;
 	$EndButton.disabled = true;
+	$UpgradeSword.disabled = true
+	$UpgradeBow.disabled = true
+	$EatFood.disabled = true
+	$UpgradeMovement.disabled = true
 
 	if players[curr_player].hitpoints <= 20:
 		var styleBox = $PlayerHealth.get("custom_styles/fg")
@@ -148,9 +196,29 @@ func updateLocation(player:int, diff:Vector2):
 				else:
 					BOW_BUTTONS[i-1].disabled = false;
 					BOW_BUTTONS[i-1].text = players[i].player_name;
+	$UpgradeSword.disabled = true
+	for x in range(STEEL_LOCS[0][0], STEEL_LOCS[1][0]+1):
+		for y in range(STEEL_LOCS[0][1], STEEL_LOCS[1][1]+1):
+			if players[curr_player].location == Vector2(x,y):
+				$UpgradeSword.disabled = false
+	$UpgradeBow.disabled = true
+	for x in range(WOOD_LOCS[0][0], WOOD_LOCS[1][0]+1):
+		for y in range(WOOD_LOCS[0][1], WOOD_LOCS[1][1]+1):
+			if players[curr_player].location == Vector2(x,y):
+				$UpgradeBow.disabled = false
+	$EatFood.disabled = true
+	for x in range(FOOD_LOCS[0][0], FOOD_LOCS[1][0]+1):
+		for y in range(FOOD_LOCS[0][1], FOOD_LOCS[1][1]+1):
+			if players[curr_player].location == Vector2(x,y):
+				$EatFood.disabled = false
+	$UpgradeMovement.disabled = true
+	for x in range(KNOWLEDGE_LOCS[0][0], KNOWLEDGE_LOCS[1][0]+1):
+		for y in range(KNOWLEDGE_LOCS[0][1], KNOWLEDGE_LOCS[1][1]+1):
+			if players[curr_player].location == Vector2(x,y):
+				$UpgradeMovement.disabled = false
 	moves -= 1
-	if moves==0:
-		next_turn(DICE_CELL)
+	#if moves==0:
+	#	next_turn(DICE_CELL)
 	
 func game_over(player:int):
 	var winner = players[player].player_name
@@ -174,32 +242,7 @@ func _input(event):
 			elif curr_player == 3:
 				$GreecePlayer.set_moves(moves)
 
-
-func _on_SwordButton1_pressed():
-	print("Player " + players[curr_player].player_name + " attacks " + $SwordButton1.text)
-
-
-func _on_SwordButton2_pressed():
-	print("Player " + players[curr_player].player_name + " attacks " + $SwordButton2.text)
-
-
-func _on_SwordButton3_pressed():
-	print("Player " + players[curr_player].player_name + " attacks " + $SwordButton3.text)
-
-
-func _on_BowButton1_pressed():
-	print("Player " + players[curr_player].player_name + " attacks " + $BowButton1.text)
-
-
-func _on_BowButton2_pressed():
-	print("Player " + players[curr_player].player_name + " attacks " + $BowButton2.text)
-
-
-func _on_BowButton3_pressed():
-	print("Player " + players[curr_player].player_name + " attacks " + $BowButton3.text)
-
-
-func _on_EndButton_pressed():
+func endTurn():
 	moves = 0
 	if curr_player == 0:
 		$JapanPlayer.set_moves(moves)
@@ -210,3 +253,62 @@ func _on_EndButton_pressed():
 	elif curr_player == 3:
 		$GreecePlayer.set_moves(moves)
 	next_turn(DICE_CELL)
+
+func _on_SwordButton1_pressed():
+	print("Player " + players[curr_player].player_name + " attacks " + $SwordButton1.text)
+	endTurn()
+
+
+func _on_SwordButton2_pressed():
+	print("Player " + players[curr_player].player_name + " attacks " + $SwordButton2.text)
+	endTurn()
+
+
+func _on_SwordButton3_pressed():
+	print("Player " + players[curr_player].player_name + " attacks " + $SwordButton3.text)
+	endTurn()
+
+
+func _on_BowButton1_pressed():
+	print("Player " + players[curr_player].player_name + " attacks " + $BowButton1.text)
+	endTurn()
+
+
+func _on_BowButton2_pressed():
+	print("Player " + players[curr_player].player_name + " attacks " + $BowButton2.text)
+	endTurn()
+
+
+func _on_BowButton3_pressed():
+	print("Player " + players[curr_player].player_name + " attacks " + $BowButton3.text)
+	endTurn()
+
+
+func _on_EndButton_pressed():
+	endTurn()
+
+func _on_UpgradeSword_pressed():
+	players[curr_player].sword += 0.1
+	$Sword.set_text("Sword Multiplier: "+str(players[curr_player].sword))
+	endTurn()
+
+func _on_UpgradeBow_pressed():
+	players[curr_player].bow += 0.1
+	$Bow.set_text("Bow Multiplier: "+str(players[curr_player].bow))
+	endTurn()
+
+func _on_EatFood_pressed():
+	players[curr_player].updateHunger(10)
+	$PlayerHunger.value = players[curr_player].hunger;
+	if players[curr_player].hunger <= 20:
+		var styleBox = $PlayerHunger.get("custom_styles/fg")
+		styleBox.bg_color = Color(255, 0, 0)
+	else:
+		var styleBox = $PlayerHunger.get("custom_styles/fg")
+		styleBox.bg_color = Color(0, 255, 0)
+	endTurn()
+
+func _on_UpgradeMovement_pressed():
+	players[curr_player].movement += 1
+	$Movement.set_text("Movement Bonus: "+str(players[curr_player].movement))
+	endTurn()

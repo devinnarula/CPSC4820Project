@@ -2066,11 +2066,26 @@ bg_color = Color( 0, 0.717647, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=70]
 bg_color = Color( 0, 1, 0, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=66]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=71]
 bg_color = Color( 0, 0.717647, 0, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=78]
 
@@ -2397,7 +2412,7 @@ script = ExtResource( 33 )
 position = Vector2( -50, 5 )
 frames = SubResource( 25 )
 animation = "idle"
-frame = 2
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EgyptPlayer"]
@@ -2413,7 +2428,7 @@ position = Vector2( 56, 11 )
 scale = Vector2( 0.947917, 0.945313 )
 frames = SubResource( 44 )
 animation = "idle"
-frame = 6
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GreecePlayer"]
@@ -2428,6 +2443,7 @@ script = ExtResource( 55 )
 position = Vector2( -49, -50 )
 frames = SubResource( 43 )
 animation = "idle"
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JapanPlayer"]
@@ -2543,6 +2559,50 @@ custom_styles/disabled = SubResource( 66 )
 custom_styles/normal = SubResource( 71 )
 text = "End Turn"
 
+[node name="UpgradeSword" type="Button" parent="."]
+margin_left = -368.0
+margin_top = -575.0
+margin_right = -144.0
+margin_bottom = -525.0
+custom_fonts/font = SubResource( 61 )
+custom_styles/hover = SubResource( 70 )
+custom_styles/disabled = SubResource( 66 )
+custom_styles/normal = SubResource( 71 )
+text = "Upgrade Sword"
+
+[node name="UpgradeBow" type="Button" parent="."]
+margin_left = 144.0
+margin_top = -575.0
+margin_right = 368.0
+margin_bottom = -525.0
+custom_fonts/font = SubResource( 61 )
+custom_styles/hover = SubResource( 70 )
+custom_styles/disabled = SubResource( 66 )
+custom_styles/normal = SubResource( 71 )
+text = "Upgrade Bow"
+
+[node name="EatFood" type="Button" parent="."]
+margin_left = -368.0
+margin_top = 525.0
+margin_right = -144.0
+margin_bottom = 575.0
+custom_fonts/font = SubResource( 61 )
+custom_styles/hover = SubResource( 70 )
+custom_styles/disabled = SubResource( 66 )
+custom_styles/normal = SubResource( 71 )
+text = "Eat Food"
+
+[node name="UpgradeMovement" type="Button" parent="."]
+margin_left = 131.0
+margin_top = 525.0
+margin_right = 381.0
+margin_bottom = 575.0
+custom_fonts/font = SubResource( 61 )
+custom_styles/hover = SubResource( 70 )
+custom_styles/disabled = SubResource( 66 )
+custom_styles/normal = SubResource( 71 )
+text = "Upgrade Movement"
+
 [node name="MenuButton" type="MenuButton" parent="."]
 margin_left = 960.0
 margin_top = -589.0
@@ -2571,3 +2631,7 @@ texture = ExtResource( 154 )
 [connection signal="pressed" from="BowButton2" to="." method="_on_BowButton2_pressed"]
 [connection signal="pressed" from="BowButton3" to="." method="_on_BowButton3_pressed"]
 [connection signal="pressed" from="EndButton" to="." method="_on_EndButton_pressed"]
+[connection signal="pressed" from="UpgradeSword" to="." method="_on_UpgradeSword_pressed"]
+[connection signal="pressed" from="UpgradeBow" to="." method="_on_UpgradeBow_pressed"]
+[connection signal="pressed" from="EatFood" to="." method="_on_EatFood_pressed"]
+[connection signal="pressed" from="UpgradeMovement" to="." method="_on_UpgradeMovement_pressed"]
