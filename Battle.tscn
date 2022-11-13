@@ -999,5 +999,4 @@ position = Vector2( 972, 825 )
 scale = Vector2( 7.8, 9.22396 )
 frames = SubResource( 66 )
 animation = "take_hit"
-frame = 1
 playing = true

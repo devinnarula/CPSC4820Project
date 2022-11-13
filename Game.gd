@@ -273,8 +273,6 @@ func _input(event):
 			roll_dice(DICE_CELL)
 			
 	if event is InputEventKey and event.pressed and not event.is_echo():
-		print("Japan position")
-		print($JapanPlayer.position.x)
 		if event.scancode == KEY_UP || event.scancode ==  KEY_DOWN || event.scancode ==  KEY_LEFT || event.scancode ==  KEY_RIGHT:
 			if curr_player == 0:
 				$JapanPlayer.set_moves(moves)
@@ -354,20 +352,33 @@ func _on_SwordButton3_pressed():
 	update_singleton()
 	endTurn()
 
+func do_Bow_damage(target:String):
+	if target == "Japan":
+		players[0].updateHealth(-5)
+	elif target == "Viking":
+		players[1].updateHealth(-5)
+	elif target == "Egypt":
+		players[2].updateHealth(-5)
+	elif target == "Greece":
+		players[3].updateHealth(-5)
+	
 
 func _on_BowButton1_pressed():
 	print("Player " + players[curr_player].player_name + " attacks " + $BowButton1.text)
-
+	do_Bow_damage($BowButton1.text)
+		
 	endTurn()
 
 
 func _on_BowButton2_pressed():
 	print("Player " + players[curr_player].player_name + " attacks " + $BowButton2.text)
+	do_Bow_damage($BowButton2.text)
 	endTurn()
 
 
 func _on_BowButton3_pressed():
 	print("Player " + players[curr_player].player_name + " attacks " + $BowButton3.text)
+	do_Bow_damage($BowButton3.text)
 	endTurn()
 
 
@@ -401,7 +412,7 @@ func _on_UpgradeMovement_pressed():
 	endTurn()
 	
 func update_singleton():
-	print("WHile updating singelton, Japan Loc= " + String(players[0].spriteposition))
+
 	global.players = players
 	global.curr_player = curr_player
 	global.players[0].spriteposition = Vector2($JapanPlayer.position)

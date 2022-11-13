@@ -32,8 +32,7 @@ onready var defend_Kbody
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	global.game_already_started = true
-	print("In Battle Scence, location is" + String(global.battle_location))
-	print(global.players[1].healthbar)
+
 	get_attacker()
 	get_defender()
 	get_background()
@@ -138,14 +137,13 @@ func _input(event):
 		var click = $TileMap1.world_to_map($TileMap1.to_local(event.position)) 
 		if 0<=click.x-DICE_CELL.x && click.x-DICE_CELL.x<=3 && 0<=click.y-DICE_CELL.y && click.y-DICE_CELL.y<=3&& $TileMap1.get_cell(DICE_CELL.x, DICE_CELL.y) == CLICK_TO_ROLL:
 			dice_val_attack = roll_dice(DICE_CELL)
-			print(String(dice_val_attack)+" attack")
 		
 			rolled1 = true
 			rolled = rolled1 and rolled2
 		
 		if 0<=click.x-DICE_CELL2.x && click.x-DICE_CELL2.x<=3 && 0<=click.y-DICE_CELL2.y && click.y-DICE_CELL2.y<=3&& $TileMap1.get_cell(DICE_CELL2.x, DICE_CELL2.y) == CLICK_TO_ROLL:
 			dice_val_defend = roll_dice(DICE_CELL2)
-			print(String(dice_val_defend)+" defend")
+
 			rolled2 = true
 			rolled = rolled1 and rolled2
 		
@@ -158,7 +156,7 @@ func attack():
 	defend_sprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished_defend")
 	#if rolled:
 		#print(String(dice_val_attack) +"dice_val")
-	print("hits= " +String(max(dice_val_attack-1,0)))
+
 	#for i in range (0,max(dice_val_attack-1,1)):
 	attack_sprite.play("attack")
 	attack_count+=1
