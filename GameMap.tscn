@@ -155,7 +155,7 @@
 [ext_resource path="res://ButtonStyle.tres" type="StyleBox" id=153]
 [ext_resource path="res://Assets/logo.png" type="Texture" id=154]
 
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="StreamTexture" id=87]
 flags = 4
 
 [sub_resource type="TileSet" id=1]
@@ -301,7 +301,7 @@ resource_local_to_scene = true
 10/shapes = [  ]
 10/z_index = 0
 11/name = "Wood.jpeg 11"
-11/texture = SubResource( 2 )
+11/texture = SubResource( 87 )
 11/tex_offset = Vector2( 0, 0 )
 11/modulate = Color( 1, 1, 1, 1 )
 11/region = Rect2( 0, 0, 256, 160 )
@@ -1680,7 +1680,7 @@ resource_local_to_scene = true
 57/shapes = [  ]
 57/z_index = 0
 
-[sub_resource type="ConvexPolygonShape2D" id=84]
+[sub_resource type="ConvexPolygonShape2D" id=88]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [sub_resource type="TileSet" id=85]
@@ -1694,14 +1694,14 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
 0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 84 )
+0/shape = SubResource( 88 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 84 ),
+"shape": SubResource( 88 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
@@ -2237,6 +2237,7 @@ custom_fonts/font = SubResource( 11 )
 custom_styles/fg = SubResource( 21 )
 
 [node name="Player1Health" type="ProgressBar" parent="."]
+unique_name_in_owner = true
 margin_left = 700.0
 margin_top = -320.0
 margin_right = 1060.0
@@ -2412,7 +2413,7 @@ script = ExtResource( 33 )
 position = Vector2( -50, 5 )
 frames = SubResource( 25 )
 animation = "idle"
-frame = 5
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EgyptPlayer"]
@@ -2428,7 +2429,7 @@ position = Vector2( 56, 11 )
 scale = Vector2( 0.947917, 0.945313 )
 frames = SubResource( 44 )
 animation = "idle"
-frame = 1
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GreecePlayer"]
@@ -2443,7 +2444,6 @@ script = ExtResource( 55 )
 position = Vector2( -49, -50 )
 frames = SubResource( 43 )
 animation = "idle"
-frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JapanPlayer"]
@@ -2459,7 +2459,7 @@ position = Vector2( 52, -58 )
 scale = Vector2( 1.48, 1.52083 )
 frames = SubResource( 26 )
 animation = "take_hit"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VikingPlayer"]

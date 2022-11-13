@@ -12,14 +12,17 @@ var movement = 0
 var sword = 1
 var bow = 0.5
 var location:Vector2
+var spriteposition:Vector2
 
 	
-func _init(name:String, bar_health:ProgressBar, bar_hunger:ProgressBar, kinematicBody:KinematicBody2D, loc:Vector2):
+func _init(name:String, bar_health:ProgressBar, bar_hunger:ProgressBar, kinematicBody:KinematicBody2D, loc:Vector2, pos:Vector2):
 	player_name = name
 	healthbar = bar_health
 	hungerbar = bar_hunger
 	body = kinematicBody
 	location = loc
+	spriteposition = pos
+	
 
 func updateLocation(diff:Vector2):
 	location += diff

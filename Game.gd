@@ -20,29 +20,66 @@ var moves = 0
 var moves_for_sprite = 0
 var players = []
 
+var battle_location
+
 export (int) var curr_player = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	SWORD_BUTTONS = [$SwordButton1, $SwordButton2, $SwordButton3]
 	BOW_BUTTONS = [$BowButton1, $BowButton2, $BowButton3]
 	RESOURCE_BUTTONS = [$UpgradeSword, $UpgradeBow, $EatFood, $UpgradeMovement]
 	rng.randomize()
 	call_deferred("setup_game")
 	players = [
-		Player.new("Japan",$Player1Health, $Player1Hunger,$EgyptPlayer,Vector2(15,15)),
-		Player.new("Viking",$Player2Health, $Player2Hunger,$KinematicBody2D,Vector2(16,15)),
-		Player.new("Egypt",$Player3Health, $Player3Hunger,$KinematicBody2D,Vector2(15,16)),
-		Player.new("Greece",$Player4Health, $Player4Hunger,$KinematicBody2D,Vector2(16,16))
+		Player.new("Japan",$Player1Health, $Player1Hunger,$JapanPlayer,Vector2(15,15),$JapanPlayer.position),
+		Player.new("Viking",$Player2Health, $Player2Hunger,$VikingPlayer,Vector2(16,15),$VikingPlayer.position),
+		Player.new("Egypt",$Player3Health, $Player3Hunger,$EgyptPlayer,Vector2(15,16),$EgyptPlayer.position),
+		Player.new("Greece",$Player4Health, $Player4Hunger,$GreecePlayer,Vector2(16,16),$GreecePlayer.position)
 		]
-	players[0].updateHealth(-10)
-	players[1].updateHealth(0)
-	players[2].updateHealth(-30)
-	players[3].updateHealth(-85)
-	players[0].updateHunger(-90)
-	players[1].updateHunger(-60)
-	players[2].updateHunger(-50)
-	players[3].updateHunger(-5)
+	if !global.game_already_started:
+		players[0].updateHealth(-90)
+		players[1].updateHealth(-90)
+		players[2].updateHealth(-90)
+		players[3].updateHealth(-90)
+		players[0].updateHunger(0)
+		players[1].updateHunger(0)
+		players[2].updateHunger(0)
+		players[3].updateHunger(0)
+	else:
+		read_from_singleton()
+		call_deferred("setup_game")
+		players[0].updateHealth(0)
+		players[1].updateHealth(0)
+		players[2].updateHealth(0)
+		players[3].updateHealth(0)
+		players[0].updateHunger(0)
+		players[1].updateHunger(0)
+		players[2].updateHunger(0)
+		players[3].updateHunger(0)
+		
+		
+		$JapanPlayer.position = players[0].spriteposition		
+		$VikingPlayer.position = players[1].spriteposition
+		$EgyptPlayer.position = players[2].spriteposition
+		$GreecePlayer.position = players[3].spriteposition
+	
+		updateLocation(0,Vector2(0,0))
+		updateLocation(1,Vector2(0,0))
+		updateLocation(2,Vector2(0,0))
+		updateLocation(3,Vector2(0,0))
+		
+	# Removing dead players from map and turns
+	for i in range(0,4):
+		if players[i].hitpoints <= 0:
+				players[i].body.visible = false
+				if !(i in global.dead_players):
+					global.dead_players.append(i)
+					
+		
+	
+	
 
 func setup_game():
 	curr_labels()
@@ -135,8 +172,12 @@ func next_turn(coord:Vector2):
 		curr_player += 1
 	else:
 		curr_player=0
+	
+	while curr_player in global.dead_players:
+		curr_player = (curr_player + 1) % 4
 	$TileMap1.set_cell(coord.x, coord.y, CLICK_TO_ROLL)
 	curr_labels()
+				
 	
 func curr_labels():
 	$Label.set_text(players[curr_player].player_name);
@@ -232,6 +273,8 @@ func _input(event):
 			roll_dice(DICE_CELL)
 			
 	if event is InputEventKey and event.pressed and not event.is_echo():
+		print("Japan position")
+		print($JapanPlayer.position.x)
 		if event.scancode == KEY_UP || event.scancode ==  KEY_DOWN || event.scancode ==  KEY_LEFT || event.scancode ==  KEY_RIGHT:
 			if curr_player == 0:
 				$JapanPlayer.set_moves(moves)
@@ -243,6 +286,20 @@ func _input(event):
 				$GreecePlayer.set_moves(moves)
 
 func endTurn():
+	
+	# Removing dead players from map and turns
+	for i in range(0,4):
+		if players[i].hitpoints <= 0:
+				players[i].body.visible = false
+				if !(i in global.dead_players):
+					global.dead_players.append(i)
+					
+	if len(global.dead_players) >= 3:
+		for i in range(0,4):
+			if players[i].hitpoints > 0:
+				game_over(i)
+				break
+					
 	moves = 0
 	if curr_player == 0:
 		$JapanPlayer.set_moves(moves)
@@ -252,25 +309,55 @@ func endTurn():
 		$EgyptPlayer.set_moves(moves)
 	elif curr_player == 3:
 		$GreecePlayer.set_moves(moves)
+
+	
+		
+
 	next_turn(DICE_CELL)
+		
 
 func _on_SwordButton1_pressed():
 	print("Player " + players[curr_player].player_name + " attacks " + $SwordButton1.text)
+	
+	#trigger battle and store var
+	
+	#print(String(global.players[3].hitpoints) + "Player 4 health")
+	global.current_attacker = players[curr_player].player_name
+	global.current_defender = $SwordButton1.text
+	update_singleton()
+	get_tree().change_scene("res://Battle.tscn")
+	
 	endTurn()
 
 
 func _on_SwordButton2_pressed():
 	print("Player " + players[curr_player].player_name + " attacks " + $SwordButton2.text)
+	
+	#trigger battle and store vars
+	
+	global.current_attacker = players[curr_player].player_name
+	global.current_defender = $SwordButton2.text
+	update_singleton()
+	get_tree().change_scene("res://Battle.tscn")
+	
 	endTurn()
 
 
 func _on_SwordButton3_pressed():
 	print("Player " + players[curr_player].player_name + " attacks " + $SwordButton3.text)
+	
+	#trigger battle and store vars
+
+	global.current_attacker = players[curr_player].player_name
+	global.current_defender = $SwordButton3.text
+	get_tree().change_scene("res://Battle.tscn")
+	update_singleton()
 	endTurn()
 
 
 func _on_BowButton1_pressed():
 	print("Player " + players[curr_player].player_name + " attacks " + $BowButton1.text)
+
 	endTurn()
 
 
@@ -312,3 +399,47 @@ func _on_UpgradeMovement_pressed():
 	players[curr_player].movement += 1
 	$Movement.set_text("Movement Bonus: "+str(players[curr_player].movement))
 	endTurn()
+	
+func update_singleton():
+	print("WHile updating singelton, Japan Loc= " + String(players[0].spriteposition))
+	global.players = players
+	global.curr_player = curr_player
+	global.players[0].spriteposition = Vector2($JapanPlayer.position)
+	global.players[1].spriteposition = Vector2($VikingPlayer.position)
+	global.players[2].spriteposition = Vector2($EgyptPlayer.position)
+	global.players[3].spriteposition = Vector2($GreecePlayer.position)
+	
+	global.battle_location = find_battle_quadrant()
+	
+func read_from_singleton():
+	curr_player = (global.curr_player + 1) % 4
+	while curr_player in global.dead_players:
+		curr_player = (curr_player + 1) % 4
+	for i in range(0,4):
+		
+		players[i].player_name = global.players[i].player_name
+		players[i].hitpoints = global.players[i].hitpoints
+		players[i].hunger = global.players[i].hunger
+		#players[i].healthbar = global.players[i].healthbar
+		#players[i].hungerbar = global.players[i].hungerbar
+		#players[i].body = global.players[i].body
+		players[i].movement = global.players[i].movement
+		players[i].sword = global.players[i].sword
+		players[i].bow = global.players[i].bow
+		players[i].location = global.players[i].location
+		players[i].spriteposition = global.players[i].spriteposition
+	
+func find_battle_quadrant():
+	var attacking_location
+	for i in range (0,4):
+		if global.players[i].player_name == global.current_attacker:
+			attacking_location = global.players[i].location
+	if attacking_location.x <= 15.5 and attacking_location.y <= 15:
+		 battle_location = "Japan"
+	elif attacking_location.x > 15.5 and attacking_location.y <= 15:
+		battle_location = "Viking"
+	elif attacking_location.x > 15.5 and attacking_location.y > 15:
+		battle_location = "Greece"
+	elif attacking_location.x <= 15.5 and attacking_location.y > 15:
+		battle_location = "Egypt"
+	return battle_location
