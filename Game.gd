@@ -45,6 +45,7 @@ func _ready():
 	players[3].updateHunger(-5)
 
 func setup_game():
+	$gamebackgroundsound.play();
 	curr_labels()
 	var cells = $TileMap1.get_used_cells()
 	for cell in cells:
@@ -54,7 +55,9 @@ func setup_game():
 				#roll_dice(cell, self)
 				DICE_CELL = cell
 
+
 func roll_dice(coord:Vector2):
+	$diceroll.play();
 	dice_animation(coord)
 	var dice = rng.randi_range(0,5)
 	moves = dice+1+players[curr_player].movement

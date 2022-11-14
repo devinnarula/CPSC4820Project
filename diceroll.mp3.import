@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/diceroll.mp3-0c610f86498c81ee4bb586638df8605b.mp3str"
+
+[deps]
+
+source_file="res://diceroll.mp3"
+dest_files=[ "res://.import/diceroll.mp3-0c610f86498c81ee4bb586638df8605b.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

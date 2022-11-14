@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/snowwalking.mp3-6b6c5f6407aea1d82627a9ee205e3d61.mp3str"
+
+[deps]
+
+source_file="res://snowwalking.mp3"
+dest_files=[ "res://.import/snowwalking.mp3-6b6c5f6407aea1d82627a9ee205e3d61.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

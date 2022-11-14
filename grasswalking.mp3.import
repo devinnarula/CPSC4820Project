@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/grasswalking.mp3-b15d4c4a6bd1e174edd093c5cb819715.mp3str"
+
+[deps]
+
+source_file="res://grasswalking.mp3"
+dest_files=[ "res://.import/grasswalking.mp3-b15d4c4a6bd1e174edd093c5cb819715.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

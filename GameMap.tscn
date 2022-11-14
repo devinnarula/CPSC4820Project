@@ -1,4 +1,4 @@
-[gd_scene load_steps=236 format=2]
+[gd_scene load_steps=238 format=2]
 
 [ext_resource path="res://Assets/RPG Nature Tileset.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Wood.jpg" type="Texture" id=2]
@@ -154,6 +154,8 @@
 [ext_resource path="res://MenuButton.gd" type="Script" id=152]
 [ext_resource path="res://ButtonStyle.tres" type="StyleBox" id=153]
 [ext_resource path="res://Assets/logo.png" type="Texture" id=154]
+[ext_resource path="res://diceroll.mp3" type="AudioStream" id=155]
+[ext_resource path="res://GameBackgroundSound.mp3" type="AudioStream" id=156]
 
 [sub_resource type="StreamTexture" id=2]
 flags = 4
@@ -2412,7 +2414,6 @@ script = ExtResource( 33 )
 position = Vector2( -50, 5 )
 frames = SubResource( 25 )
 animation = "idle"
-frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EgyptPlayer"]
@@ -2428,7 +2429,7 @@ position = Vector2( 56, 11 )
 scale = Vector2( 0.947917, 0.945313 )
 frames = SubResource( 44 )
 animation = "idle"
-frame = 1
+frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GreecePlayer"]
@@ -2443,7 +2444,7 @@ script = ExtResource( 55 )
 position = Vector2( -49, -50 )
 frames = SubResource( 43 )
 animation = "idle"
-frame = 3
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JapanPlayer"]
@@ -2459,7 +2460,6 @@ position = Vector2( 52, -58 )
 scale = Vector2( 1.48, 1.52083 )
 frames = SubResource( 26 )
 animation = "take_hit"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VikingPlayer"]
@@ -2623,6 +2623,13 @@ script = ExtResource( 152 )
 position = Vector2( 756, -559 )
 scale = Vector2( 0.111111, 0.111111 )
 texture = ExtResource( 154 )
+
+[node name="diceroll" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 155 )
+
+[node name="gamebackgroundsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 156 )
+volume_db = -20.248
 
 [connection signal="pressed" from="SwordButton1" to="." method="_on_SwordButton1_pressed"]
 [connection signal="pressed" from="SwordButton2" to="." method="_on_SwordButton2_pressed"]

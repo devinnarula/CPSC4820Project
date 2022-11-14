@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/stonewalking.mp3-1d24287380d4772488834bbdb3d6c83e.mp3str"
+
+[deps]
+
+source_file="res://stonewalking.mp3"
+dest_files=[ "res://.import/stonewalking.mp3-1d24287380d4772488834bbdb3d6c83e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
