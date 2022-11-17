@@ -23,6 +23,7 @@ func _init(name:String, bar_health:ProgressBar, bar_hunger:ProgressBar, kinemati
 
 func updateLocation(diff:Vector2):
 	location += diff
+	print(location)
 	
 func updateHealth(change:int):
 	hitpoints += change

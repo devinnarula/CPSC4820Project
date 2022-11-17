@@ -2407,13 +2407,13 @@ custom_fonts/font = SubResource( 24 )
 text = "Bow Multiplier: 0.5"
 
 [node name="EgyptPlayer" type="KinematicBody2D" parent="."]
-position = Vector2( 16, -22 )
 script = ExtResource( 33 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="EgyptPlayer"]
 position = Vector2( -50, 5 )
 frames = SubResource( 25 )
 animation = "idle"
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EgyptPlayer"]
@@ -2421,7 +2421,6 @@ position = Vector2( -50, 56 )
 shape = SubResource( 86 )
 
 [node name="GreecePlayer" type="KinematicBody2D" parent="."]
-position = Vector2( -16, -22 )
 script = ExtResource( 57 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="GreecePlayer"]
@@ -2429,22 +2428,22 @@ position = Vector2( 56, 11 )
 scale = Vector2( 0.947917, 0.945313 )
 frames = SubResource( 44 )
 animation = "idle"
-frame = 4
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GreecePlayer"]
 position = Vector2( 55, 55 )
+scale = Vector2( 0.1, 0.1 )
 shape = SubResource( 86 )
 
 [node name="JapanPlayer" type="KinematicBody2D" parent="."]
-position = Vector2( 16, 10 )
 script = ExtResource( 55 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="JapanPlayer"]
 position = Vector2( -49, -50 )
 frames = SubResource( 43 )
 animation = "idle"
-frame = 6
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JapanPlayer"]
@@ -2452,7 +2451,6 @@ position = Vector2( -48, -47 )
 shape = SubResource( 86 )
 
 [node name="VikingPlayer" type="KinematicBody2D" parent="."]
-position = Vector2( -16, 10 )
 script = ExtResource( 50 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="VikingPlayer"]

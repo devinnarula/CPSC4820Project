@@ -30,10 +30,10 @@ func _ready():
 	rng.randomize()
 	call_deferred("setup_game")
 	players = [
-		Player.new("Japan",$Player1Health, $Player1Hunger,$EgyptPlayer,Vector2(15,15)),
-		Player.new("Viking",$Player2Health, $Player2Hunger,$KinematicBody2D,Vector2(16,15)),
-		Player.new("Egypt",$Player3Health, $Player3Hunger,$KinematicBody2D,Vector2(15,16)),
-		Player.new("Greece",$Player4Health, $Player4Hunger,$KinematicBody2D,Vector2(16,16))
+		Player.new("Japan",$Player1Health, $Player1Hunger,$EgyptPlayer,Vector2(14,14)),
+		Player.new("Viking",$Player2Health, $Player2Hunger,$KinematicBody2D,Vector2(17,14)),
+		Player.new("Egypt",$Player3Health, $Player3Hunger,$KinematicBody2D,Vector2(14,17)),
+		Player.new("Greece",$Player4Health, $Player4Hunger,$KinematicBody2D,Vector2(17,17))
 		]
 	players[0].updateHealth(-10)
 	players[1].updateHealth(0)
@@ -173,6 +173,12 @@ func curr_labels():
 		var styleBox = $PlayerHunger.get("custom_styles/fg")
 		styleBox.bg_color = Color(0, 255, 0)
 	
+func getLocation():
+	return players[curr_player].location
+	
+func setLocation(loc:Vector2):
+	players[curr_player].location = loc
+
 func updateLocation(player:int, diff:Vector2):
 	players[player].updateLocation(diff)
 	$SwordButton1.disabled = true;
