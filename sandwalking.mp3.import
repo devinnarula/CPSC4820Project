@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/sandwalking.mp3-ffedc0a60f0e4f8dd02271d8a9d1a1e7.mp3str"
+
+[deps]
+
+source_file="res://sandwalking.mp3"
+dest_files=[ "res://.import/sandwalking.mp3-ffedc0a60f0e4f8dd02271d8a9d1a1e7.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

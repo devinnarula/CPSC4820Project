@@ -33,20 +33,24 @@ func _ready():
 	rng.randomize()
 	call_deferred("setup_game")
 	players = [
-		Player.new("Japan",$Player1Health, $Player1Hunger,$JapanPlayer,Vector2(15,15),$JapanPlayer.position),
-		Player.new("Viking",$Player2Health, $Player2Hunger,$VikingPlayer,Vector2(16,15),$VikingPlayer.position),
-		Player.new("Egypt",$Player3Health, $Player3Hunger,$EgyptPlayer,Vector2(15,16),$EgyptPlayer.position),
-		Player.new("Greece",$Player4Health, $Player4Hunger,$GreecePlayer,Vector2(16,16),$GreecePlayer.position)
+		Player.new("Japan",$Player1Health, $Player1Hunger,$JapanPlayer,Vector2(14,14),$JapanPlayer.position),
+		Player.new("Viking",$Player2Health, $Player2Hunger,$VikingPlayer,Vector2(17,14),$VikingPlayer.position),
+		Player.new("Egypt",$Player3Health, $Player3Hunger,$EgyptPlayer,Vector2(14,17),$EgyptPlayer.position),
+		Player.new("Greece",$Player4Health, $Player4Hunger,$GreecePlayer,Vector2(17,17),$GreecePlayer.position)
 		]
 	if !global.game_already_started:
-		players[0].updateHealth(-90)
-		players[1].updateHealth(-90)
-		players[2].updateHealth(-90)
+		players[0].updateHealth(0)
+		players[1].updateHealth(-50)
+		players[2].updateHealth(-80)
 		players[3].updateHealth(-90)
 		players[0].updateHunger(0)
 		players[1].updateHunger(0)
 		players[2].updateHunger(0)
 		players[3].updateHunger(0)
+		
+		#Just for demo
+		#players[1].bow = 1.25
+		players[1].sword = 1.25
 	else:
 		read_from_singleton()
 		call_deferred("setup_game")
@@ -82,6 +86,7 @@ func _ready():
 	
 
 func setup_game():
+	$gamebackgroundsound.play();
 	curr_labels()
 	var cells = $TileMap1.get_used_cells()
 	for cell in cells:
@@ -92,6 +97,7 @@ func setup_game():
 				DICE_CELL = cell
 
 func roll_dice(coord:Vector2):
+	$diceroll.play();
 	dice_animation(coord)
 	var dice = rng.randi_range(0,5)
 	moves = dice+1+players[curr_player].movement
@@ -210,6 +216,14 @@ func curr_labels():
 	else:
 		var styleBox = $PlayerHunger.get("custom_styles/fg")
 		styleBox.bg_color = Color(0, 255, 0)
+
+
+func getLocation():
+	return players[curr_player].location
+
+func setLocation(loc:Vector2):
+	players[curr_player].location = loc
+	
 	
 func updateLocation(player:int, diff:Vector2):
 	players[player].updateLocation(diff)

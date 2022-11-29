@@ -1,4 +1,4 @@
-[gd_scene load_steps=236 format=2]
+[gd_scene load_steps=238 format=2]
 
 [ext_resource path="res://Assets/RPG Nature Tileset.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Wood.jpg" type="Texture" id=2]
@@ -154,6 +154,8 @@
 [ext_resource path="res://MenuButton.gd" type="Script" id=152]
 [ext_resource path="res://ButtonStyle.tres" type="StyleBox" id=153]
 [ext_resource path="res://Assets/logo.png" type="Texture" id=154]
+[ext_resource path="res://GameBackgroundSound.mp3" type="AudioStream" id=155]
+[ext_resource path="res://diceroll.mp3" type="AudioStream" id=156]
 
 [sub_resource type="StreamTexture" id=87]
 flags = 4
@@ -2410,14 +2412,14 @@ position = Vector2( 16, -22 )
 script = ExtResource( 33 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="EgyptPlayer"]
-position = Vector2( -50, 5 )
+position = Vector2( -65, 25 )
 frames = SubResource( 25 )
 animation = "idle"
-frame = 1
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EgyptPlayer"]
-position = Vector2( -50, 56 )
+position = Vector2( -64, 72 )
 shape = SubResource( 86 )
 
 [node name="GreecePlayer" type="KinematicBody2D" parent="."]
@@ -2425,15 +2427,15 @@ position = Vector2( -16, -22 )
 script = ExtResource( 57 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="GreecePlayer"]
-position = Vector2( 56, 11 )
+position = Vector2( 71, 30 )
 scale = Vector2( 0.947917, 0.945313 )
 frames = SubResource( 44 )
 animation = "idle"
-frame = 5
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GreecePlayer"]
-position = Vector2( 55, 55 )
+position = Vector2( 72, 73 )
 shape = SubResource( 86 )
 
 [node name="JapanPlayer" type="KinematicBody2D" parent="."]
@@ -2441,14 +2443,14 @@ position = Vector2( 16, 10 )
 script = ExtResource( 55 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="JapanPlayer"]
-position = Vector2( -49, -50 )
+position = Vector2( -65, -63 )
 frames = SubResource( 43 )
 animation = "idle"
-frame = 7
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JapanPlayer"]
-position = Vector2( -48, -47 )
+position = Vector2( -63, -61 )
 shape = SubResource( 86 )
 
 [node name="VikingPlayer" type="KinematicBody2D" parent="."]
@@ -2456,7 +2458,7 @@ position = Vector2( -16, 10 )
 script = ExtResource( 50 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="VikingPlayer"]
-position = Vector2( 52, -58 )
+position = Vector2( 64, -69 )
 scale = Vector2( 1.48, 1.52083 )
 frames = SubResource( 26 )
 animation = "take_hit"
@@ -2464,7 +2466,7 @@ frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VikingPlayer"]
-position = Vector2( 50, -48 )
+position = Vector2( 64, -60 )
 shape = SubResource( 86 )
 
 [node name="AttackSword" type="Label" parent="."]
@@ -2624,6 +2626,13 @@ script = ExtResource( 152 )
 position = Vector2( 756, -559 )
 scale = Vector2( 0.111111, 0.111111 )
 texture = ExtResource( 154 )
+
+[node name="gamebackgroundsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 155 )
+volume_db = -20.248
+
+[node name="diceroll" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 156 )
 
 [connection signal="pressed" from="SwordButton1" to="." method="_on_SwordButton1_pressed"]
 [connection signal="pressed" from="SwordButton2" to="." method="_on_SwordButton2_pressed"]

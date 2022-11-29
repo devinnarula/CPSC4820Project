@@ -10,7 +10,7 @@ var hungerbar:ProgressBar
 var body:KinematicBody2D
 var movement = 0
 var sword = 1
-var bow = 0.5
+var bow = 1
 var location:Vector2
 var spriteposition:Vector2
 
@@ -26,6 +26,7 @@ func _init(name:String, bar_health:ProgressBar, bar_hunger:ProgressBar, kinemati
 
 func updateLocation(diff:Vector2):
 	location += diff
+	print(location)
 	
 func updateHealth(change:int):
 	hitpoints += change

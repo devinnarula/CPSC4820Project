@@ -52,7 +52,7 @@ func _ready():
 	defend_sprite.flip_h = true
 	attack_sprite.position.y += 100
 	defend_sprite.position.y += 100
-	
+	$Sword.set_text("Sword Multiplier: "+str(attacker.sword))
 	$Player1Health.value = attacker.hitpoints
 	$Player2Health.value = defender.hitpoints
 
