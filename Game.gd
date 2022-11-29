@@ -77,11 +77,20 @@ func _ready():
 	# Removing dead players from map and turns
 	for i in range(0,4):
 		if players[i].hitpoints <= 0:
-				players[i].body.visible = false
-				if !(i in global.dead_players):
-					global.dead_players.append(i)
-					
-		
+			if i == 0:
+				$JapanPlayer/CollisionShape2D.disabled = true
+			elif i == 1:
+				$VikingPlayer/CollisionShape2D.disabled = true
+			elif i == 2:
+				$EgyptPlayer/CollisionShape2D.disabled = true
+			elif i == 3:
+				$GreecePlayer/CollisionShape2D.disabled = true
+			
+			players[i].body.visible = false
+			if !(i in global.dead_players):
+				global.dead_players.append(i)
+				
+	
 	
 	
 
@@ -108,7 +117,7 @@ func roll_dice(coord:Vector2):
 	$SwordButton3.disabled = true;
 	for i in range (0,4):
 		if i!=curr_player:
-			if(abs(players[i].location.x-players[curr_player].location.x)<=1 and abs(players[i].location.y-players[curr_player].location.y)<=1):
+			if(abs(players[i].location.x-players[curr_player].location.x)<=1 and abs(players[i].location.y-players[curr_player].location.y)<=1 and players[i].hitpoints > 0):
 				if i<curr_player:
 					SWORD_BUTTONS[i].disabled = false;
 					SWORD_BUTTONS[i].text = players[i].player_name;
@@ -120,7 +129,7 @@ func roll_dice(coord:Vector2):
 	$BowButton3.disabled = true;
 	for i in range (0,4):
 		if i!=curr_player:
-			if(abs(players[i].location.x-players[curr_player].location.x)<=4 and abs(players[i].location.y-players[curr_player].location.y)<=4):
+			if(abs(players[i].location.x-players[curr_player].location.x)<=4 and abs(players[i].location.y-players[curr_player].location.y)<=4 and players[i].hitpoints > 0):
 				if i<curr_player:
 					BOW_BUTTONS[i].disabled = false;
 					BOW_BUTTONS[i].text = players[i].player_name;
@@ -232,7 +241,7 @@ func updateLocation(player:int, diff:Vector2):
 	$SwordButton3.disabled = true;
 	for i in range (0,4):
 		if i!=player:
-			if(abs(players[i].location.x-players[player].location.x)<=1 and abs(players[i].location.y-players[player].location.y)<=1):
+			if(abs(players[i].location.x-players[player].location.x)<=1 and abs(players[i].location.y-players[player].location.y)<=1 and players[i].hitpoints > 0):
 				if i<curr_player:
 					SWORD_BUTTONS[i].disabled = false;
 					SWORD_BUTTONS[i].text = players[i].player_name;
@@ -244,7 +253,7 @@ func updateLocation(player:int, diff:Vector2):
 	$BowButton3.disabled = true;
 	for i in range (0,4):
 		if i!=player:
-			if(abs(players[i].location.x-players[player].location.x)<=4 and abs(players[i].location.y-players[player].location.y)<=4):
+			if(abs(players[i].location.x-players[player].location.x)<=4 and abs(players[i].location.y-players[player].location.y)<=4 and players[i].hitpoints > 0):
 				if i<curr_player:
 					BOW_BUTTONS[i].disabled = false;
 					BOW_BUTTONS[i].text = players[i].player_name;
@@ -298,13 +307,23 @@ func _input(event):
 				$GreecePlayer.set_moves(moves)
 
 func endTurn():
-	
+		
 	# Removing dead players from map and turns
 	for i in range(0,4):
 		if players[i].hitpoints <= 0:
-				players[i].body.visible = false
-				if !(i in global.dead_players):
-					global.dead_players.append(i)
+			if i == 0:
+				$JapanPlayer/CollisionShape2D.disabled = true
+			elif i == 1:
+				$VikingPlayer/CollisionShape2D.disabled = true
+			elif i == 2:
+				$EgyptPlayer/CollisionShape2D.disabled = true
+			elif i == 3:
+				$GreecePlayer/CollisionShape2D.disabled = true
+			
+			players[i].body.visible = false
+			if !(i in global.dead_players):
+				global.dead_players.append(i)
+				
 					
 	if len(global.dead_players) >= 3:
 		for i in range(0,4):

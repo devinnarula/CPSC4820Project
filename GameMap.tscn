@@ -2415,7 +2415,6 @@ script = ExtResource( 33 )
 position = Vector2( -65, 25 )
 frames = SubResource( 25 )
 animation = "idle"
-frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EgyptPlayer"]
@@ -2431,7 +2430,7 @@ position = Vector2( 71, 30 )
 scale = Vector2( 0.947917, 0.945313 )
 frames = SubResource( 44 )
 animation = "idle"
-frame = 1
+frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GreecePlayer"]
@@ -2446,7 +2445,7 @@ script = ExtResource( 55 )
 position = Vector2( -65, -63 )
 frames = SubResource( 43 )
 animation = "idle"
-frame = 3
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JapanPlayer"]
