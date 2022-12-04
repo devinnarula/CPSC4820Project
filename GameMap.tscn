@@ -1,4 +1,4 @@
-[gd_scene load_steps=238 format=2]
+[gd_scene load_steps=241 format=2]
 
 [ext_resource path="res://Assets/RPG Nature Tileset.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Wood.jpg" type="Texture" id=2]
@@ -156,6 +156,10 @@
 [ext_resource path="res://Assets/logo.png" type="Texture" id=154]
 [ext_resource path="res://GameBackgroundSound.mp3" type="AudioStream" id=155]
 [ext_resource path="res://diceroll.mp3" type="AudioStream" id=156]
+[ext_resource path="res://Assets/ravenmore_fantasy_icon_pack_2017/Icon Pack/128x128/heart.png" type="Texture" id=157]
+[ext_resource path="res://Assets/Pixel Art Icon Pack - RPG/Food/Green Apple.png" type="Texture" id=158]
+[ext_resource path="res://Assets/ravenmore_fantasy_icon_pack_2017/Icon Pack/128x128/bow.png" type="Texture" id=159]
+[ext_resource path="res://Assets/ravenmore_fantasy_icon_pack_2017/Icon Pack/128x128/sword.png" type="Texture" id=160]
 
 [sub_resource type="StreamTexture" id=87]
 flags = 4
@@ -1750,10 +1754,6 @@ bg_color = Color( 0, 1, 0, 1 )
 [sub_resource type="StyleBoxFlat" id=15]
 bg_color = Color( 0, 1, 0, 1 )
 
-[sub_resource type="DynamicFont" id=12]
-size = 25
-font_data = ExtResource( 12 )
-
 [sub_resource type="StyleBoxFlat" id=16]
 bg_color = Color( 0, 1, 0, 1 )
 
@@ -1770,11 +1770,11 @@ bg_color = Color( 0, 1, 0, 1 )
 size = 25
 font_data = ExtResource( 12 )
 
-[sub_resource type="DynamicFont" id=23]
+[sub_resource type="DynamicFont" id=24]
 size = 25
 font_data = ExtResource( 12 )
 
-[sub_resource type="DynamicFont" id=24]
+[sub_resource type="DynamicFont" id=23]
 size = 25
 font_data = ExtResource( 12 )
 
@@ -2170,7 +2170,6 @@ tile_data = PoolIntArray( -983056, 26, 0, -1048574, 40, 0, -1048572, 40, 0, -104
 [node name="TileMapCollisions" type="TileMap" parent="TileMap1/TileMap2/TileMap3/TileMap4"]
 tile_set = SubResource( 85 )
 cell_size = Vector2( 32, 32 )
-show_collision = true
 format = 1
 tile_data = PoolIntArray( -1114127, 0, 0, -1114126, 0, 0, -1114125, 0, 0, -1114124, 0, 0, -1114123, 0, 0, -1114122, 0, 0, -1114121, 0, 0, -1114118, 0, 0, -1114117, 0, 0, -1114116, 0, 0, -1114115, 0, 0, -1114114, 0, 0, -1114113, 0, 0, -1179648, 0, 0, -1179647, 0, 0, -1179646, 0, 0, -1179645, 0, 0, -1179644, 0, 0, -1179643, 0, 0, -1179642, 0, 0, -1179641, 0, 0, -1179640, 0, 0, -1179639, 0, 0, -1179638, 0, 0, -1179632, 0, 0, -1048594, 0, 0, -1048593, 0, 0, -1048592, 0, 0, -1048591, 0, 0, -1048590, 0, 0, -1048589, 0, 0, -1048588, 0, 0, -1048587, 0, 0, -1048586, 0, 0, -1048585, 0, 0, -1048584, 0, 0, -1048583, 0, 0, -1048582, 0, 0, -1048581, 0, 0, -1048580, 0, 0, -1048579, 0, 0, -1048578, 0, 0, -1048577, 0, 0, -1114112, 0, 0, -1114111, 0, 0, -1114110, 0, 0, -1114109, 0, 0, -1114108, 0, 0, -1114107, 0, 0, -1114106, 0, 0, -1114105, 0, 0, -1114104, 0, 0, -1114103, 0, 0, -1114102, 0, 0, -1114101, 0, 0, -1114100, 0, 0, -1114099, 0, 0, -1114098, 0, 0, -1114097, 0, 0, -1114096, 0, 0, -983057, 0, 0, -983047, 0, 0, -983046, 0, 0, -983045, 0, 0, -983044, 0, 0, -983043, 0, 0, -1048569, 0, 0, -1048568, 0, 0, -1048567, 0, 0, -1048566, 0, 0, -1048565, 0, 0, -1048564, 0, 0, -1048563, 0, 0, -1048560, 0, 0, -917521, 0, 0, -917511, 0, 0, -917508, 0, 0, -917507, 0, 0, -917506, 0, 0, -983034, 0, 0, -983033, 0, 0, -983032, 0, 0, -983031, 0, 0, -983030, 0, 0, -983029, 0, 0, -983028, 0, 0, -983027, 0, 0, -983024, 0, 0, -851985, 0, 0, -851975, 0, 0, -851974, 0, 0, -851973, 0, 0, -851972, 0, 0, -851971, 0, 0, -851970, 0, 0, -917500, 0, 0, -917499, 0, 0, -917498, 0, 0, -917497, 0, 0, -917496, 0, 0, -917495, 0, 0, -917494, 0, 0, -917488, 0, 0, -786449, 0, 0, -786436, 0, 0, -786435, 0, 0, -786434, 0, 0, -786433, 0, 0, -851968, 0, 0, -851967, 0, 0, -851964, 0, 0, -851963, 0, 0, -851962, 0, 0, -851961, 0, 0, -851952, 0, 0, -720913, 0, 0, -786432, 0, 0, -786431, 0, 0, -786428, 0, 0, -786427, 0, 0, -786426, 0, 0, -786416, 0, 0, -655378, 0, 0, -655377, 0, 0, -720880, 0, 0, -589842, 0, 0, -589841, 0, 0, -655344, 0, 0, -524305, 0, 0, -589808, 0, 0, -458769, 0, 0, -458764, 0, 0, -458763, 0, 0, -458762, 0, 0, -524272, 0, 0, -393233, 0, 0, -458736, 0, 0, -327697, 0, 0, -393200, 0, 0, -262161, 0, 0, -327676, 0, 0, -327675, 0, 0, -327671, 0, 0, -327670, 0, 0, -327664, 0, 0, -196625, 0, 0, -196622, 0, 0, -196621, 0, 0, -262140, 0, 0, -262139, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -262128, 0, 0, -131089, 0, 0, -196602, 0, 0, -196601, 0, 0, -196600, 0, 0, -196599, 0, 0, -196598, 0, 0, -196592, 0, 0, -65553, 0, 0, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -131056, 0, 0, -17, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65521, 0, 0, -65520, 0, 0, 65519, 0, 0, 5, 0, 0, 6, 0, 0, 15, 0, 0, 16, 0, 0, 131055, 0, 0, 65551, 0, 0, 65552, 0, 0, 196591, 0, 0, 131088, 0, 0, 262127, 0, 0, 196611, 0, 0, 196612, 0, 0, 196624, 0, 0, 327663, 0, 0, 262147, 0, 0, 262160, 0, 0, 393199, 0, 0, 327683, 0, 0, 327696, 0, 0, 458735, 0, 0, 393232, 0, 0, 524271, 0, 0, 458768, 0, 0, 589807, 0, 0, 589808, 0, 0, 524304, 0, 0, 655343, 0, 0, 655344, 0, 0, 655345, 0, 0, 589840, 0, 0, 720879, 0, 0, 720880, 0, 0, 720881, 0, 0, 655376, 0, 0, 786415, 0, 0, 786416, 0, 0, 786417, 0, 0, 786418, 0, 0, 720912, 0, 0, 851951, 0, 0, 851952, 0, 0, 851953, 0, 0, 851954, 0, 0, 851955, 0, 0, 786435, 0, 0, 786448, 0, 0, 917487, 0, 0, 917489, 0, 0, 917490, 0, 0, 917491, 0, 0, 917492, 0, 0, 851972, 0, 0, 851984, 0, 0, 983023, 0, 0, 983026, 0, 0, 983027, 0, 0, 983028, 0, 0, 983029, 0, 0, 983030, 0, 0, 917520, 0, 0, 1048559, 0, 0, 1048562, 0, 0, 1048563, 0, 0, 1048564, 0, 0, 1048565, 0, 0, 1048566, 0, 0, 1048567, 0, 0, 1048568, 0, 0, 1048569, 0, 0, 983056, 0, 0, 1114091, 0, 0, 1114092, 0, 0, 1114094, 0, 0, 1114095, 0, 0, 1114096, 0, 0, 1114097, 0, 0, 1114098, 0, 0, 1114099, 0, 0, 1114100, 0, 0, 1114101, 0, 0, 1114102, 0, 0, 1114103, 0, 0, 1114104, 0, 0, 1114105, 0, 0, 1114106, 0, 0, 1114107, 0, 0, 1114108, 0, 0, 1114109, 0, 0, 1114110, 0, 0, 1114111, 0, 0, 1048576, 0, 0, 1048577, 0, 0, 1048578, 0, 0, 1048579, 0, 0, 1048580, 0, 0, 1048581, 0, 0, 1048582, 0, 0, 1048583, 0, 0, 1048584, 0, 0, 1048585, 0, 0, 1048586, 0, 0, 1048587, 0, 0, 1048588, 0, 0, 1048589, 0, 0, 1048590, 0, 0, 1048591, 0, 0, 1048592, 0, 0, 1179630, 0, 0, 1179641, 0, 0, 1179642, 0, 0, 1179643, 0, 0, 1114128, 0, 0 )
 
@@ -2271,54 +2270,6 @@ margin_bottom = 312.0
 custom_fonts/font = SubResource( 11 )
 custom_styles/fg = SubResource( 15 )
 
-[node name="Health" type="Label" parent="."]
-margin_left = -1050.0
-margin_top = -110.0
-margin_right = -975.0
-margin_bottom = -79.0
-custom_fonts/font = SubResource( 12 )
-text = "Health"
-
-[node name="Hunger" type="Label" parent="."]
-margin_left = -1050.0
-margin_top = -50.0
-margin_right = -967.0
-margin_bottom = -19.0
-custom_fonts/font = SubResource( 12 )
-text = "Food"
-
-[node name="Health1" type="Label" parent="."]
-margin_left = 620.0
-margin_top = -320.0
-margin_right = 695.0
-margin_bottom = -289.0
-custom_fonts/font = SubResource( 12 )
-text = "Health"
-
-[node name="Health2" type="Label" parent="."]
-margin_left = 620.0
-margin_top = -120.0
-margin_right = 695.0
-margin_bottom = -89.0
-custom_fonts/font = SubResource( 12 )
-text = "Health"
-
-[node name="Health3" type="Label" parent="."]
-margin_left = 620.0
-margin_top = 80.0
-margin_right = 695.0
-margin_bottom = 111.0
-custom_fonts/font = SubResource( 12 )
-text = "Health"
-
-[node name="Health4" type="Label" parent="."]
-margin_left = 620.0
-margin_top = 280.0
-margin_right = 695.0
-margin_bottom = 311.0
-custom_fonts/font = SubResource( 12 )
-text = "Health"
-
 [node name="Player1Hunger" type="ProgressBar" parent="."]
 margin_left = 700.0
 margin_top = -250.0
@@ -2351,61 +2302,29 @@ margin_bottom = 382.0
 custom_fonts/font = SubResource( 11 )
 custom_styles/fg = SubResource( 19 )
 
-[node name="Hunger1" type="Label" parent="."]
-margin_left = 620.0
-margin_top = -250.0
-margin_right = 703.0
-margin_bottom = -219.0
-custom_fonts/font = SubResource( 12 )
-text = "Food"
-
-[node name="Hunger2" type="Label" parent="."]
-margin_left = 620.0
-margin_top = -50.0
-margin_right = 703.0
-margin_bottom = -19.0
-custom_fonts/font = SubResource( 12 )
-text = "Food"
-
-[node name="Hunger3" type="Label" parent="."]
-margin_left = 620.0
-margin_top = 150.0
-margin_right = 703.0
-margin_bottom = 181.0
-custom_fonts/font = SubResource( 12 )
-text = "Food"
-
-[node name="Hunger4" type="Label" parent="."]
-margin_left = 620.0
-margin_top = 350.0
-margin_right = 703.0
-margin_bottom = 381.0
-custom_fonts/font = SubResource( 12 )
-text = "Food"
-
 [node name="Movement" type="Label" parent="."]
 margin_left = -1050.0
-margin_top = 10.0
+margin_top = 4.0
 margin_right = 7985.0
-margin_bottom = 1183.0
+margin_bottom = 1177.0
 custom_fonts/font = SubResource( 22 )
 text = "Movement Bonus: 0"
 
-[node name="Sword" type="Label" parent="."]
-margin_left = -1050.0
-margin_top = 70.0
-margin_right = -929.0
-margin_bottom = 84.0
-custom_fonts/font = SubResource( 23 )
-text = "Sword Multiplier: 1"
-
 [node name="Bow" type="Label" parent="."]
 margin_left = -1050.0
-margin_top = 130.0
-margin_right = -929.0
-margin_bottom = 144.0
+margin_top = 99.0
+margin_right = -836.0
+margin_bottom = 130.0
 custom_fonts/font = SubResource( 24 )
 text = "Bow Multiplier: 0.5"
+
+[node name="Sword" type="Label" parent="."]
+margin_left = -1050.0
+margin_top = 51.0
+margin_right = -835.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 23 )
+text = "Sword Multiplier: 1"
 
 [node name="EgyptPlayer" type="KinematicBody2D" parent="."]
 position = Vector2( 16, -22 )
@@ -2415,6 +2334,7 @@ script = ExtResource( 33 )
 position = Vector2( -65, 25 )
 frames = SubResource( 25 )
 animation = "idle"
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EgyptPlayer"]
@@ -2430,7 +2350,7 @@ position = Vector2( 71, 30 )
 scale = Vector2( 0.947917, 0.945313 )
 frames = SubResource( 44 )
 animation = "idle"
-frame = 4
+frame = 7
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GreecePlayer"]
@@ -2445,7 +2365,7 @@ script = ExtResource( 55 )
 position = Vector2( -65, -63 )
 frames = SubResource( 43 )
 animation = "idle"
-frame = 6
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JapanPlayer"]
@@ -2468,27 +2388,11 @@ playing = true
 position = Vector2( 64, -60 )
 shape = SubResource( 86 )
 
-[node name="AttackSword" type="Label" parent="."]
-margin_left = -1050.0
-margin_top = 200.0
-margin_right = -754.0
-margin_bottom = 231.0
-custom_fonts/font = SubResource( 24 )
-text = "Attack Player With Sword:"
-
-[node name="AttackBow" type="Label" parent="."]
-margin_left = -1050.0
-margin_top = 300.0
-margin_right = -754.0
-margin_bottom = 331.0
-custom_fonts/font = SubResource( 24 )
-text = "Attack Player With Bow:"
-
 [node name="SwordButton1" type="Button" parent="."]
 margin_left = -1050.0
-margin_top = 240.0
+margin_top = 216.0
 margin_right = -950.0
-margin_bottom = 290.0
+margin_bottom = 266.0
 custom_fonts/font = SubResource( 61 )
 custom_styles/hover = SubResource( 68 )
 custom_styles/disabled = SubResource( 62 )
@@ -2497,9 +2401,9 @@ text = "Player"
 
 [node name="SwordButton2" type="Button" parent="."]
 margin_left = -930.0
-margin_top = 240.0
+margin_top = 219.0
 margin_right = -830.0
-margin_bottom = 290.0
+margin_bottom = 269.0
 custom_fonts/font = SubResource( 61 )
 custom_styles/hover = SubResource( 68 )
 custom_styles/disabled = SubResource( 62 )
@@ -2508,9 +2412,9 @@ text = "Player"
 
 [node name="SwordButton3" type="Button" parent="."]
 margin_left = -810.0
-margin_top = 240.0
+margin_top = 217.0
 margin_right = -710.0
-margin_bottom = 290.0
+margin_bottom = 267.0
 custom_fonts/font = SubResource( 61 )
 custom_styles/hover = SubResource( 68 )
 custom_styles/disabled = SubResource( 62 )
@@ -2632,6 +2536,143 @@ volume_db = -20.248
 
 [node name="diceroll" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 156 )
+
+[node name="BowIcon" type="TextureRect" parent="."]
+margin_left = -1037.0
+margin_top = 273.0
+margin_right = -965.0
+margin_bottom = 338.0
+rect_pivot_offset = Vector2( 18, 40 )
+texture = ExtResource( 159 )
+expand = true
+stretch_mode = 1
+
+[node name="BowIcon2" type="TextureRect" parent="."]
+margin_left = -916.0
+margin_top = 274.0
+margin_right = -842.0
+margin_bottom = 338.0
+rect_pivot_offset = Vector2( 18, 40 )
+texture = ExtResource( 159 )
+expand = true
+stretch_mode = 1
+
+[node name="BowIcon3" type="TextureRect" parent="."]
+margin_left = -799.0
+margin_top = 276.0
+margin_right = -725.0
+margin_bottom = 338.0
+rect_pivot_offset = Vector2( 18, 40 )
+texture = ExtResource( 159 )
+expand = true
+stretch_mode = 1
+
+[node name="SwordIcon" type="TextureRect" parent="."]
+margin_left = -1039.0
+margin_top = 148.0
+margin_right = -971.0
+margin_bottom = 221.0
+rect_pivot_offset = Vector2( 26, 34 )
+texture = ExtResource( 160 )
+expand = true
+
+[node name="SwordIcon2" type="TextureRect" parent="."]
+margin_left = -917.0
+margin_top = 148.0
+margin_right = -849.0
+margin_bottom = 221.0
+rect_pivot_offset = Vector2( 26, 34 )
+texture = ExtResource( 160 )
+expand = true
+
+[node name="SwordIcon3" type="TextureRect" parent="."]
+margin_left = -800.0
+margin_top = 148.0
+margin_right = -732.0
+margin_bottom = 221.0
+rect_pivot_offset = Vector2( 26, 34 )
+texture = ExtResource( 160 )
+expand = true
+
+[node name="HealthIcon" type="TextureRect" parent="."]
+margin_left = -1054.0
+margin_top = -131.0
+margin_right = -978.0
+margin_bottom = -56.0
+texture = ExtResource( 157 )
+expand = true
+
+[node name="HealthIcon2" type="TextureRect" parent="."]
+margin_left = 614.0
+margin_top = -341.0
+margin_right = 690.0
+margin_bottom = -266.0
+texture = ExtResource( 157 )
+expand = true
+
+[node name="HealthIcon3" type="TextureRect" parent="."]
+margin_left = 615.0
+margin_top = -143.0
+margin_right = 691.0
+margin_bottom = -68.0
+texture = ExtResource( 157 )
+expand = true
+
+[node name="HealthIcon4" type="TextureRect" parent="."]
+margin_left = 616.0
+margin_top = 59.0
+margin_right = 692.0
+margin_bottom = 134.0
+texture = ExtResource( 157 )
+expand = true
+
+[node name="HealthIcon5" type="TextureRect" parent="."]
+margin_left = 620.0
+margin_top = 259.0
+margin_right = 696.0
+margin_bottom = 334.0
+texture = ExtResource( 157 )
+expand = true
+
+[node name="FoodIcon" type="TextureRect" parent="."]
+margin_left = -1044.0
+margin_top = -61.0
+margin_right = -989.0
+margin_bottom = -10.0
+texture = ExtResource( 158 )
+expand = true
+
+[node name="FoodIcon2" type="TextureRect" parent="."]
+margin_left = 626.0
+margin_top = -261.0
+margin_right = 681.0
+margin_bottom = -210.0
+texture = ExtResource( 158 )
+expand = true
+
+[node name="FoodIcon3" type="TextureRect" parent="."]
+margin_left = 627.0
+margin_top = -63.0
+margin_right = 682.0
+margin_bottom = -12.0
+texture = ExtResource( 158 )
+expand = true
+
+[node name="FoodIcon4" type="TextureRect" parent="."]
+margin_left = 626.0
+margin_top = 140.0
+margin_right = 681.0
+margin_bottom = 191.0
+texture = ExtResource( 158 )
+expand = true
+
+[node name="FoodIcon5" type="TextureRect" parent="."]
+margin_left = 632.0
+margin_top = 336.0
+margin_right = 687.0
+margin_bottom = 387.0
+texture = ExtResource( 158 )
+expand = true
 
 [connection signal="pressed" from="SwordButton1" to="." method="_on_SwordButton1_pressed"]
 [connection signal="pressed" from="SwordButton2" to="." method="_on_SwordButton2_pressed"]

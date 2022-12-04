@@ -954,7 +954,7 @@ position = Vector2( 932, 881 )
 scale = Vector2( 5.61, 5.6 )
 frames = SubResource( 61 )
 animation = "idle"
-frame = 1
+frame = 5
 playing = true
 
 [node name="EgyptPlayer" type="KinematicBody2D" parent="."]
@@ -965,7 +965,7 @@ position = Vector2( 936, 573 )
 scale = Vector2( 5.49306, 7.35937 )
 frames = SubResource( 62 )
 animation = "idle"
-frame = 3
+frame = 7
 playing = true
 
 [node name="Player1Health" type="ProgressBar" parent="."]
@@ -993,7 +993,7 @@ position = Vector2( 959, 640 )
 scale = Vector2( 4.63151, 6.1748 )
 frames = SubResource( 65 )
 animation = "idle"
-frame = 7
+frame = 3
 playing = true
 
 [node name="VikingPlayer" type="KinematicBody2D" parent="."]
